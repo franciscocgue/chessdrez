@@ -30,7 +30,22 @@ module.exports = {
                 test: /\.tsx?$/,
                 exclude: /node_modules/,
                 use: ['ts-loader'],
-            }
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: 'style-loader' },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: {
+                                localIdentName: '[name]_[local]_[hash:base64:5]'
+                            }
+                        }
+                    },
+                ]
+            },
         ]
     }
 };
