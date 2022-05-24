@@ -1,0 +1,31 @@
+{
+  "name": "my-app-template",
+  "version": "1.0.0",
+  "description": "Template for a Node/React web application with Webpack and TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franciscocgue/my-app-template.git"
+  },
+  "keywords": [
+    "React",
+    "Node",
+    "Webpack",
+    "TypeScript",
+    "web",
+    "application"
+  ],
+  "author": "Francisco Carmona Guerrero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/franciscocgue/my-app-template/issues"
+  },
+  "homepage": "https://github.com/franciscocgue/my-app-template#readme",
+  "dependencies": {
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
