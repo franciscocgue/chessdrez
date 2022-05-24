@@ -1,5 +1,7 @@
 const path = require('path');
-const { pathToFileURL } = require('url');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 
 module.exports = {
     entry: {
@@ -8,5 +10,13 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, './src/client/template.html'),
+            title: 'My Application',
+            filename: 'index.html',
+        }),
+        new CleanWebpackPlugin(),
+    ],
 };
