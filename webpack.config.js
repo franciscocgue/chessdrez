@@ -4,6 +4,15 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 module.exports = {
+    mode: 'development',
+    devServer: {
+        historyApiFallback: true,
+        static: path.resolve(__dirname, './dist'),
+        open: true,
+        compress: true,
+        hot: true,
+        port: 3000,
+    },
     entry: {
         main: path.resolve(__dirname, './src/client/index.js'),
     },
