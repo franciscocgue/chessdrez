@@ -4,8 +4,10 @@
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "jsx": "react",
+        "esModuleInterop": true
     },
-    // "include": ["src/**/*"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules"],
 }
