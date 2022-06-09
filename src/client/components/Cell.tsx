@@ -3,8 +3,8 @@ import React from 'react'
 import styles from './Cell.module.css';
 
 interface Props {
-    posV: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
-    posH: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+    posV: number, // 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+    posH: number, // 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
     piece: null | 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey'
 }
 
@@ -14,7 +14,7 @@ const Cell = ({ posV, posH, piece }: Props) => {
 
     return (
         <div className={styles[teamColor]}>
-
+            
         </div>
     )
 };
