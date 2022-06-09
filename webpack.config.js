@@ -28,6 +28,9 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
     ],
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js']
+    },
     module: {
         rules: [
             {

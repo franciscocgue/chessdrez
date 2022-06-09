@@ -34,6 +34,9 @@ module.exports = {
             chunkFilename: '[id].css',
         }),
     ],
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js']
+    },
     module: {
         rules: [
             {
