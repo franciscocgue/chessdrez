@@ -3,4 +3,5 @@
     width: 402px;
     border: 1px solid gray;
     flex-wrap: wrap;
+    margin: auto;
 }
