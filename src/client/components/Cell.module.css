@@ -21,3 +21,14 @@
 .shadow {
     box-shadow: 0 0 0 100px rgba(255, 165, 0, 1) inset;
 }
+
+.draggable {
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+}
+
+ /* (Optional) Apply a "closed-hand" cursor during drag operation. */
+.draggable:active {
+    cursor: grabbing;
+}
+

@@ -13,7 +13,7 @@ import styles from './Board.module.css';
 interface PieceImages {
     [key: string]: string,
 }[]
-const pieceImages:PieceImages = {
+const pieceImages: PieceImages = {
     'peonblancas': peonblancas,
     'peonnegras': peonnegras,
     'torreblancas': torreblancas,
@@ -29,6 +29,13 @@ const getCoords = (row: number, col: number) => {
 
 const rows: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 const cols: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
+
+interface NowDragging {
+    row?: null | number,
+    col?: null | number,
+    piece?: null | 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey',
+    teamColor?: null | 'negras' | 'blancas'
+}
 
 interface CellType {
     piece: null | 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey',
@@ -63,6 +70,7 @@ let boardInitial: BoardType = {
 const Board = () => {
 
     const [shadowCoords, setShadowCoords] = useState([])
+    const [nowDragging, setNowDragging] = useState<NowDragging>({})
     const [board, setBoard] = useState(boardInitial)
 
     const onHoverHandler = (row: number, col: number, piece: null | 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey', teamColor: 'negras' | 'blancas') => {
@@ -118,7 +126,44 @@ const Board = () => {
         }
     }
 
+    const onDropHandle = (
+        row: number,
+        col: number,
+        piece: 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey',
+        teamColor: 'negras' | 'blancas'
+    ) => {
+        const oldCoords = getCoords(nowDragging.row, nowDragging.col);
+        const newCoords = getCoords(row, col);
+        if (shadowCoords.includes(newCoords)) {
+            setBoard(prev => {
+                const prevBoard = { ...prev };
+                console.log('board1', prevBoard)
+                console.log('nowDragging', nowDragging)
+                // const prevPosition = 
+                prevBoard[oldCoords] = { piece: null, color: null };
+                prevBoard[newCoords] = { piece: nowDragging.piece, color: nowDragging.teamColor };
+                console.log({ piece: piece, color: teamColor })
+                console.log('board2', prevBoard)
+                return prevBoard;
+            })
+            console.log(row, col)
+        }
+    }
 
+    const onDragStartHandle = (
+        row: number,
+        col: number,
+        piece: 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey',
+        teamColor: 'negras' | 'blancas'
+    ) => {
+        const coords = getCoords(row, col);
+        setNowDragging({
+            row: row,
+            col: col,
+            piece: piece,
+            teamColor: teamColor
+        })
+    }
 
 
     return (
@@ -132,6 +177,8 @@ const Board = () => {
                         img={pieceImages[
                             board[row.toString() + col.toString() as keyof typeof Board]['piece'] + board[row.toString() + col.toString() as keyof typeof Board]['color']
                         ]}
+                        onDragStart={onDragStartHandle}
+                        onDrop={onDropHandle}
                         row={row}
                         col={col}
                         shadow={shadowCoords.includes(getCoords(row, col))}
