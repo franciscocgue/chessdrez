@@ -7,6 +7,12 @@ import torreblancas from '../assets/torre_blanco.png';
 import torrenegras from '../assets/torre_negro.png';
 import caballoblancas from '../assets/caballo_blanco.png';
 import caballonegras from '../assets/caballo_negro.png';
+import alfilblancas from '../assets/alfil_blanco.png';
+import alfilnegras from '../assets/alfil_negro.png';
+import reinablancas from '../assets/reina_blanco.png';
+import reinanegras from '../assets/reina_negro.png';
+import reyblancas from '../assets/rey_blanco.png';
+import reynegras from '../assets/rey_negro.png';
 
 import styles from './Board.module.css';
 
@@ -20,6 +26,12 @@ const pieceImages: PieceImages = {
     'torrenegras': torrenegras,
     'caballoblancas': caballoblancas,
     'caballonegras': caballonegras,
+    'alfilblancas': alfilblancas,
+    'alfilnegras': alfilnegras,
+    'reinablancas': reinablancas,
+    'reinanegras': reinanegras,
+    'reyblancas': reyblancas,
+    'reynegras': reynegras,
 }
 
 const getCoords = (row: number, col: number) => {
@@ -67,6 +79,25 @@ let boardInitial: BoardType = {
     '81': { piece: 'torre', color: 'blancas' }, '82': { piece: 'caballo', color: 'blancas' }, '83': { piece: 'alfil', color: 'blancas' }, '84': { piece: 'reina', color: 'blancas' }, '85': { piece: 'rey', color: 'blancas' }, '86': { piece: 'alfil', color: 'blancas' }, '87': { piece: 'caballo', color: 'blancas' }, '88': { piece: 'torre', color: 'blancas' },
 }
 
+const getSurroundings = (
+    row: number,
+    col: number,
+    board: BoardType
+) => {
+    // returns surrounding coordinates, 
+    // clockwise starting at top
+    return {
+        top: row == 1 ? null : board[getCoords(row - 1, col)],
+        topRight: row == 1 || col == 8 ? null : board[getCoords(row - 1, col + 1)],
+        right: col == 8 ? null : board[getCoords(row, col + 1)],
+        bottomRight: row == 8 || col == 8 ? null : board[getCoords(row + 1, col + 1)],
+        bottom: row == 8 ? null : board[getCoords(row + 1, col)],
+        bottomLeft: row == 8 || col == 1 ? null : board[getCoords(row + 1, col - 1)],
+        left: col == 1 ? null : board[getCoords(row, col - 1)],
+        topLeft: row == 1 || col == 1 ? null : board[getCoords(row - 1, col - 1)]
+    };
+}
+
 const Board = () => {
 
     const [shadowCoords, setShadowCoords] = useState([])
@@ -74,6 +105,8 @@ const Board = () => {
     const [board, setBoard] = useState(boardInitial)
 
     const onHoverHandler = (row: number, col: number, piece: null | 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey', teamColor: 'negras' | 'blancas') => {
+        const surroundings = getSurroundings(row, col, board);
+        console.log(surroundings)
         if (piece === 'peon') {
             if (teamColor === 'blancas') {
                 if (row === 7) {
@@ -137,13 +170,8 @@ const Board = () => {
         if (shadowCoords.includes(newCoords)) {
             setBoard(prev => {
                 const prevBoard = { ...prev };
-                console.log('board1', prevBoard)
-                console.log('nowDragging', nowDragging)
-                // const prevPosition = 
                 prevBoard[oldCoords] = { piece: null, color: null };
                 prevBoard[newCoords] = { piece: nowDragging.piece, color: nowDragging.teamColor };
-                console.log({ piece: piece, color: teamColor })
-                console.log('board2', prevBoard)
                 return prevBoard;
             })
             console.log(row, col)

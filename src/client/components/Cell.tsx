@@ -43,8 +43,8 @@ const Cell = ({ col, row, piece, img, shadow, onHover, onDrop, onDragStart, team
             onDrop={(e) => onDropHandle(e, row, col, piece, teamColor)}
             onMouseEnter={e => onHover(row, col, piece, teamColor)}
             onMouseLeave={e => onHover(row, col, null, null)}>
-            <img className={styles['draggable']}
-                src={img}
+            <img className={`${styles['draggable']} ${styles['icon']}`}
+                src={img} width={40}
             >
                 {/* {row},{col}
             {piece} */}
