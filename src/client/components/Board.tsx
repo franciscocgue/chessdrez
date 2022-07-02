@@ -122,7 +122,8 @@ const Board = () => {
                 }
             }
         } else if (piece === 'torre') {
-            setShadowCoords(rows.filter(item => item !== row).map(item => getCoords(item, col)).concat(cols.filter(item => item !== col).map(item => getCoords(row, item))))
+            setShadowCoords(rows.filter(
+                item => item !== row).map(item => getCoords(item, col)).concat(cols.filter(item => item !== col).map(item => getCoords(row, item))))
         } else if (piece === 'caballo') {
             setShadowCoords([
                 getCoords(row - 2, col - 1),
