@@ -13,11 +13,10 @@ interface Props {
     shadow: true | false,
     onHover: (row: number, col: number, board: BoardType) => void
     onDrop: (row: number, col: number, piece: 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey', color: 'black' | 'white') => void,
-    onDragStart: (row: number, col: number, piece: 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey', color: 'black' | 'white') => void,
     color: 'white' | 'black'
 }
 
-const Cell = ({ board, col, row, piece, img, shadow, onHover, onDrop, onDragStart, color }: Props) => {
+const Cell = ({ board, col, row, piece, img, shadow, onHover, onDrop, color }: Props) => {
 
     const cellColor = (row % 2 && col % 2) || (!(row % 2) && !(col % 2)) ? 'black' : 'white';
 
@@ -27,26 +26,29 @@ const Cell = ({ board, col, row, piece, img, shadow, onHover, onDrop, onDragStar
 
     const onDropHandle = (e: React.DragEvent<HTMLDivElement>, row: number, col: number, piece: 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey', color: 'black' | 'white') => {
         e.preventDefault();
-        console.log('inner', piece, color)
         onDrop(row, col, piece, color);
-    }
-
-    const onDragStartHandle = (e: React.DragEvent<HTMLDivElement>, row: number, col: number, piece: 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey', color: 'black' | 'white') => {
-        console.log('inner', piece, color)
-        onDragStart(row, col, piece, color)
     }
 
     return (
         <div
             className={`${styles[cellColor]} ${styles.cell} ${shadow ? styles.shadow : ''}`}
-            onDragStart={(e) => onDragStartHandle(e, row, col, piece, color)}
-            onDragOver={(e) => onDragOverHandle(e)}
+            onDragOver={(e) => {
+                console.log('onDragOver', row, col)
+                onDragOverHandle(e)
+            }}
             // onDragEnd={(e) => test(e)}
-            onDrop={(e) => onDropHandle(e, row, col, piece, color)}
-            onMouseEnter={e => onHover(row, col, board)}
-            onMouseLeave={e => onHover(row, col, board)}>
+            onDrop={(e) => {
+                onDropHandle(e, row, col, piece, color)
+                console.log('onDrop', row, col)
+            }}
+            onMouseEnter={e => {
+                onHover(row, col, board)
+                console.log('onMouseEnter', row, col)
+            }}
+            // onMouseLeave={e => onHover(row, col, board)}
+        >
             <img className={`${styles['draggable']} ${styles['icon']}`}
-                src={img} width={40}
+                src={img} width={'95%'}
             >
                 {/* {row},{col}
             {piece} */}

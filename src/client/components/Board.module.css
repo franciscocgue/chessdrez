@@ -1,6 +1,6 @@
 .board {
     display: flex;
-    width: 402px;
+    width: 482px;
     border: 1px solid gray;
     flex-wrap: wrap;
     margin: auto;

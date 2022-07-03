@@ -70,59 +70,14 @@ const Board = () => {
 
     const onHoverHandler = (row: number, col: number, board: BoardType) => {
         const moves = possibleMoves(row, col, board);
-        console.log(moves)
-        setShadowCoords(moves)
-        // if (piece === 'peon') {
-        //     if (color === 'white') {
-        //         if (row === 7) {
-        //             setShadowCoords([getCoords(row - 1, col), getCoords(row - 2, col)])
-        //         } else {
-        //             setShadowCoords([getCoords(row - 1, col)])
-        //         }
-        //     } else {
-        //         if (row === 2) {
-        //             setShadowCoords([getCoords(row + 1, col), getCoords(row + 2, col)])
-        //         } else {
-        //             setShadowCoords([getCoords(row + 1, col)])
-        //         }
-        //     }
-        // } else if (piece === 'torre') {
-        //     setShadowCoords(rows.filter(
-        //         item => item !== row).map(item => getCoords(item, col)).concat(cols.filter(item => item !== col).map(item => getCoords(row, item))))
-        // } else if (piece === 'caballo') {
-        //     setShadowCoords([
-        //         getCoords(row - 2, col - 1),
-        //         getCoords(row - 2, col + 1),
-        //         getCoords(row - 1, col - 2),
-        //         getCoords(row - 1, col + 2),
-        //         getCoords(row + 2, col - 1),
-        //         getCoords(row + 2, col + 1),
-        //         getCoords(row + 1, col - 2),
-        //         getCoords(row + 1, col + 2)
-        //     ])
-        // } else if (piece === 'alfil') {
-        //     setShadowCoords(rows.map(item => getCoords(item + row, item + col)).concat(cols.map(item => getCoords(item + row, -item + col))).concat(cols.map(item => getCoords(-item + row, -item + col))).concat(cols.map(item => getCoords(-item + row, item + col))))
-        // } else if (piece === 'reina') {
-        //     let positions: string[] = [];
-        //     // torre
-        //     positions = positions.concat(rows.filter(item => item !== row).map(item => getCoords(item, col)).concat(cols.filter(item => item !== col).map(item => getCoords(row, item))))
-        //     // alfil
-        //     positions = positions.concat(rows.map(item => getCoords(item + row, item + col)).concat(cols.map(item => getCoords(item + row, -item + col))).concat(cols.map(item => getCoords(-item + row, -item + col))).concat(cols.map(item => getCoords(-item + row, item + col))))
-        //     setShadowCoords(positions)
-        // } else if (piece === 'rey') {
-        //     setShadowCoords([
-        //         getCoords(row + 1, col + 1),
-        //         getCoords(row + 1, col),
-        //         getCoords(row + 1, col - 1),
-        //         getCoords(row, col - 1),
-        //         getCoords(row - 1, col - 1),
-        //         getCoords(row - 1, col),
-        //         getCoords(row - 1, col + 1),
-        //         getCoords(row, col + 1),
-        //     ])
-        // } else {
-        //     setShadowCoords([])
-        // }
+        setShadowCoords(moves);
+        const coordinates = getCoords(row, col);
+        setNowDragging({
+            row: row,
+            col: col,
+            piece: coordinates in board ? board[coordinates].piece : null,
+            color: coordinates in board ? board[coordinates].color : null
+        })
     }
 
     const onDropHandle = (
@@ -140,23 +95,7 @@ const Board = () => {
                 prevBoard[newCoords] = { piece: nowDragging.piece, color: nowDragging.color };
                 return prevBoard;
             })
-            console.log(row, col)
         }
-    }
-
-    const onDragStartHandle = (
-        row: number,
-        col: number,
-        piece: 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey',
-        color: 'black' | 'white'
-    ) => {
-        const coords = getCoords(row, col);
-        setNowDragging({
-            row: row,
-            col: col,
-            piece: piece,
-            color: color
-        })
     }
 
     return (
@@ -171,7 +110,6 @@ const Board = () => {
                         img={pieceImages[
                             board[row.toString() + col.toString() as keyof typeof Board]['piece'] + board[row.toString() + col.toString() as keyof typeof Board]['color']
                         ]}
-                        onDragStart={onDragStartHandle}
                         onDrop={onDropHandle}
                         row={row}
                         col={col}

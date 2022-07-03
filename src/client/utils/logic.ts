@@ -16,7 +16,7 @@ const possibleMoves = (row: number, col: number, board: BoardType) => {
     let r, c, coordinates;
 
     let moves: string[] = [];
-    if (piece === 'torre') {
+    if (piece === 'torre' || piece === 'reina') {
         // right
         for (c = col + 1; c <= 8; c++) {
             coordinates = getCoords(row, c);
@@ -97,8 +97,106 @@ const possibleMoves = (row: number, col: number, board: BoardType) => {
         }
 
     }
-
-
+    if (piece === 'alfil' || piece === 'reina') {
+        // top-right
+        for (let ii = 1; ii <= 8; ii++) {
+            r = row + ii;
+            c = col + ii;
+            coordinates = getCoords(r, c);
+            if (coordinates in board) {
+                if (board[coordinates].color === null) {
+                    moves.push(coordinates);
+                } else if (board[coordinates].color !== color) {
+                    moves.push(coordinates);
+                    break;
+                } else {
+                    break;
+                }
+            }
+        }
+        // top-left
+        for (let ii = 1; ii <= 8; ii++) {
+            r = row + ii;
+            c = col - ii;
+            coordinates = getCoords(r, c);
+            if (coordinates in board) {
+                if (board[coordinates].color === null) {
+                    moves.push(coordinates);
+                } else if (board[coordinates].color !== color) {
+                    moves.push(coordinates);
+                    break;
+                } else {
+                    break;
+                }
+            }
+        }
+        // bottom-left
+        for (let ii = 1; ii <= 8; ii++) {
+            r = row - ii;
+            c = col - ii;
+            coordinates = getCoords(r, c);
+            if (coordinates in board) {
+                if (board[coordinates].color === null) {
+                    moves.push(coordinates);
+                } else if (board[coordinates].color !== color) {
+                    moves.push(coordinates);
+                    break;
+                } else {
+                    break;
+                }
+            }
+        }
+        // bottom-right
+        for (let ii = 1; ii <= 8; ii++) {
+            r = row - ii;
+            c = col + ii;
+            coordinates = getCoords(r, c);
+            if (coordinates in board) {
+                if (board[coordinates].color === null) {
+                    moves.push(coordinates);
+                } else if (board[coordinates].color !== color) {
+                    moves.push(coordinates);
+                    break;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+    if (piece === 'caballo') {
+        const coordinatesPossible = [
+            getCoords(row - 2, col - 1),
+            getCoords(row - 2, col + 1),
+            getCoords(row - 1, col - 2),
+            getCoords(row - 1, col + 2),
+            getCoords(row + 2, col - 1),
+            getCoords(row + 2, col + 1),
+            getCoords(row + 1, col - 2),
+            getCoords(row + 1, col + 2)
+        ];
+        for (coordinates of coordinatesPossible) {
+            if (coordinates in board && board[coordinates].color !== color) {
+                moves.push(coordinates);
+            };
+        };
+    }
+    if (piece === 'rey') {
+        const coordinatesPossible = [
+            getCoords(row + 1, col + 1),
+            getCoords(row + 1, col),
+            getCoords(row + 1, col - 1),
+            getCoords(row, col - 1),
+            getCoords(row - 1, col - 1),
+            getCoords(row - 1, col),
+            getCoords(row - 1, col + 1),
+            getCoords(row, col + 1),
+        ];
+        for (coordinates of coordinatesPossible) {
+            if (coordinates in board && board[coordinates].color !== color) {
+                moves.push(coordinates);
+            };
+        };
+    }
     return moves;
 }
 
