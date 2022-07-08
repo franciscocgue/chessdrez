@@ -6,6 +6,21 @@ const getCoords = (row: number, col: number) => {
     return coords;
 };
 
+// coordinates to row and col
+const getRowCol = (coordinates: string) => {
+    if (coordinates.length === 2) {
+        return {
+            row: parseInt(coordinates.slice(0, 1)),
+            col: parseInt(coordinates.slice(1, 2))
+        }
+    } else {
+        return {
+            row: null,
+            col: null
+        }
+    }
+}
+
 // possible moves of piece in row and col
 const possibleMoves = (row: number, col: number, board: BoardType) => {
 
@@ -203,4 +218,6 @@ const possibleMoves = (row: number, col: number, board: BoardType) => {
 
 export {
     possibleMoves,
+    getCoords,
+    getRowCol,
 };

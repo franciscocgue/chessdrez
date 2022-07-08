@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { GameContextProvider } from './store/game-context'
 
 import App from './App.tsx';
 
@@ -10,6 +11,8 @@ const root = createRoot(rootElement);
 
 root.render(
     <React.StrictMode>
-        <App />
+        <GameContextProvider>
+            <App />
+        </GameContextProvider>
     </React.StrictMode>
 );
