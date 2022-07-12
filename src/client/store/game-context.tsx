@@ -51,19 +51,29 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
 
     const [board, setBoard] = useState(boardInitial)
     const [playing, setPlaying] = useState('white')
-    const [dragging, setDragging] = useState(null)
-    const [draggingOver, setDraggingOver] = useState(null)
+    const [dragging, setDragging] = useState(null) // currently dragged piece coordinates
+    const [draggingOver, setDraggingOver] = useState(null) // draggind-over coordinates
     const [shadowEnabled, setShadowEnabled] = useState(true)
     const [shadows, setShadows] = useState([])
 
     useEffect(() => {
-        console.log(board)
+        console.log('board changed: ',board)
     }, [board])
 
+    useEffect(() => {
+        console.log('draggingOver changed: ',draggingOver)
+    }, [draggingOver])
+
+    useEffect(() => {
+        console.log('dragging changed: ',dragging)
+    }, [dragging])
+
     const onUpdateBoardHandler = (dragging: string, draggingOver: string) => {
+        // check if dragged inside board
         if (dragging in boardInitial && draggingOver in boardInitial) {
             const draggingRowCol = getRowCol(dragging);
             const moves = possibleMoves(draggingRowCol.row, draggingRowCol.col, board);
+            // check move is valid
             if (moves.includes(draggingOver)) {
                 // update board
                 setBoard(prev => {
@@ -72,35 +82,39 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                     newBoard[dragging] = { piece: null, color: null }
                     return newBoard;
                 })
-                setDragging(null);
-                setDraggingOver(null);
                 setPlaying(prev => prev === 'white' ? 'black' : 'white')
-            }
+            };
+            setDragging(null);
+            setDraggingOver(null);
         }
     }
 
     const onDragStartHandler = (row: number, col: number) => {
         const coordinates = getCoords(row, col);
         setDragging(coordinates);
-        console.log('start dragging: ' + coordinates)
+        // console.log('start dragging: ' + coordinates)
     }
 
     const onDragEnterHandler = (row: number, col: number) => {
         const coordinates = getCoords(row, col);
         setDraggingOver(coordinates);
-        console.log('entered: ' + coordinates)
+        // console.log('entered: ' + coordinates)
     }
 
     const onDragExitBoardHandler = () => {
         setDraggingOver(null);
-        console.log('exited board')
+        // console.log('exited board')
     }
 
     const onCellEnteredHandler = (row: number, col: number) => {
-        setShadows(possibleMoves(row, col, board))
+        if (dragging === null) {
+            setShadows(possibleMoves(row, col, board))
+        }
     }
 
     const onDropOutsideBoardHandler = () => {
+        setDragging(null);
+        setDraggingOver(null);
         setShadows([]);
     }
 

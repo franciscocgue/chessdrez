@@ -31,7 +31,7 @@ const Cell = ({ col, row, img }: Props) => {
                 e.preventDefault()
                 e.stopPropagation()
                 gameCtx.onUpdateBoard(gameCtx.dragging, gameCtx.draggingOver)
-                console.log('cell: dropped')
+                // console.log('cell: dropped')
             }}
             onMouseEnter={e => gameCtx.onCellEntered(row, col)}
         >

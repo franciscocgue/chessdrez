@@ -45,7 +45,7 @@ const Board = () => {
     return (
         <div draggable className={styles.board}
             onMouseLeave={e => {
-                console.log('leaving')
+                // console.log('leaving')
                 if (gameCtx.dragging === null) {
                     // e.preventDefault()
                     gameCtx.onDropOutsideBoard();
