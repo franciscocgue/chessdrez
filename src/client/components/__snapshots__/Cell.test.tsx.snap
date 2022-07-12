@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`shows possible moves when pawn cell 78 hovered 1`] = `
+<div
+  className="white cell "
+  draggable={true}
+  onDragEnter={[Function]}
+  onDragStart={[Function]}
+  onDrop={[Function]}
+  onMouseEnter={[Function]}
+>
+  <img
+    className="draggable icon"
+    src="test-file-stub"
+    width="95%"
+  />
+</div>
+`;
