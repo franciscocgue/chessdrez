@@ -1,4 +1,4 @@
-import { Piece, Cell, BoardType } from './types';
+import { BoardType } from './types';
 
 // row and col to coordinates
 const getCoords = (row: number, col: number) => {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Board from './components/Board';
 import GameContext from './store/game-context';
 
@@ -19,7 +19,7 @@ const App = () => {
                 gameCtx.onDragExitBoard();
             }}
         >
-            <p>Hey, it works!</p>
+            <p>Now playing: {gameCtx.playing}</p>
             <Board />
         </div>
     )

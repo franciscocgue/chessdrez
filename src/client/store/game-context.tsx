@@ -50,40 +50,30 @@ interface PropsType {
 export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
 
     const [board, setBoard] = useState(boardInitial)
-    const [playing, setPlaying] = useState('white')
+    const [playing, setPlaying] = useState<'white' | 'black'>('white')
     const [dragging, setDragging] = useState(null) // currently dragged piece coordinates
     const [draggingOver, setDraggingOver] = useState(null) // draggind-over coordinates
     const [shadowEnabled, setShadowEnabled] = useState(true)
     const [shadows, setShadows] = useState([])
 
-    useEffect(() => {
-        console.log('board changed: ',board)
-    }, [board])
-
-    useEffect(() => {
-        console.log('draggingOver changed: ',draggingOver)
-    }, [draggingOver])
-
-    useEffect(() => {
-        console.log('dragging changed: ',dragging)
-    }, [dragging])
-
     const onUpdateBoardHandler = (dragging: string, draggingOver: string) => {
         // check if dragged inside board
         if (dragging in boardInitial && draggingOver in boardInitial) {
             const draggingRowCol = getRowCol(dragging);
-            const moves = possibleMoves(draggingRowCol.row, draggingRowCol.col, board);
-            // check move is valid
-            if (moves.includes(draggingOver)) {
-                // update board
-                setBoard(prev => {
-                    const newBoard = { ...prev };
-                    newBoard[draggingOver] = { piece: prev[dragging].piece, color: prev[dragging].color }
-                    newBoard[dragging] = { piece: null, color: null }
-                    return newBoard;
-                })
-                setPlaying(prev => prev === 'white' ? 'black' : 'white')
-            };
+            if (board[getCoords(draggingRowCol.row, draggingRowCol.col)].color === playing) {
+                const moves = possibleMoves(draggingRowCol.row, draggingRowCol.col, board);
+                // check move is valid
+                if (moves.includes(draggingOver)) {
+                    // update board
+                    setBoard(prev => {
+                        const newBoard = { ...prev };
+                        newBoard[draggingOver] = { piece: prev[dragging].piece, color: prev[dragging].color }
+                        newBoard[dragging] = { piece: null, color: null }
+                        return newBoard;
+                    })
+                    setPlaying(prev => prev === 'white' ? 'black' : 'white')
+                };
+            }
             setDragging(null);
             setDraggingOver(null);
         }
@@ -108,7 +98,12 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
 
     const onCellEnteredHandler = (row: number, col: number) => {
         if (dragging === null) {
-            setShadows(possibleMoves(row, col, board))
+            if (board[getCoords(row, col)].color === playing) {
+                // check hovering over correct color (active turn)
+                setShadows(possibleMoves(row, col, board))
+            } else {
+                setShadows([])
+            }
         }
     }
 
@@ -118,20 +113,13 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
         setShadows([]);
     }
 
-    // @TODO
-    // 
-    // onMouseEnter, and if not dragging (dragging === null): setShadows(possibleMoves(row, col, board))
-    // 
-    // onDrop: setDragging(null); setDraggingOver(null);
-
-
     return (
         <GameContext.Provider
             value={{
                 board: board,
                 dragging: dragging,
                 draggingOver: draggingOver,
-                playing: 'white',
+                playing: playing,
                 shadowEnabled: shadowEnabled,
                 shadows: shadows,
                 onUpdateBoard: onUpdateBoardHandler,
