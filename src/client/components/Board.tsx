@@ -1,7 +1,5 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Cell from './Cell';
-import { possibleMoves } from '../utils/logic';
-import { BoardType, Piece } from '../utils/types';
 import GameContext from '../store/game-context';
 
 import peonwhite from '../assets/peon_blanco.png';
@@ -37,21 +35,8 @@ const pieceImages: PieceImages = {
     'reyblack': reyblack,
 }
 
-const getCoords = (row: number, col: number) => {
-    const coords = row.toString() + col.toString();
-    return coords;
-}
-
 const rows: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 const cols: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
-
-interface NowDragging {
-    row?: null | number,
-    col?: null | number,
-    piece?: null | 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey',
-    color?: null | 'black' | 'white'
-}
-
 
 const Board = () => {
 
@@ -71,15 +56,14 @@ const Board = () => {
                 row => cols.map(
                     col => <Cell
                         key={row.toString() + col.toString()}
-                        // piece={board[row.toString() + col.toString()][piece]}
-                        board={gameCtx.board}
-                        piece={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['piece']}
+                        // board={gameCtx.board}
+                        // piece={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['piece']}
                         img={pieceImages[
                             gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['piece'] + gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']
                         ]}
                         row={row}
                         col={col}
-                        color={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']}
+                        // color={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']}
                     />
                 )
             )}

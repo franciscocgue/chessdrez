@@ -1,21 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { BoardType } from '../utils/types';
+import React, { useContext } from 'react'
 import GameContext from '../store/game-context';
-import { getCoords, possibleMoves } from '../utils/logic';
+import { getCoords } from '../utils/logic';
 
 import styles from './Cell.module.css';
 
 interface Props {
     key: string,
-    board: BoardType,
     col: number, // 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
     row: number, // 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
-    piece: null | 'peon' | 'alfil' | 'caballo' | 'torre' | 'reina' | 'rey',
     img: string,
-    color: 'white' | 'black'
 }
 
-const Cell = ({ board, col, row, piece, img, color }: Props) => {
+const Cell = ({ col, row, img }: Props) => {
 
     const gameCtx = useContext(GameContext);
 
