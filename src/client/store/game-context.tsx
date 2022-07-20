@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { BoardType } from '../utils/types';
+import { BoardType, Cell } from '../utils/types';
 import { getCoords, possibleMoves, getRowCol } from '../utils/logic';
+import Eaten from '../components/Eaten';
 
 const boardInitial: BoardType = {
     '11': { piece: 'torre', color: 'black' }, '12': { piece: 'caballo', color: 'black' }, '13': { piece: 'alfil', color: 'black' }, '14': { piece: 'reina', color: 'black' }, '15': { piece: 'rey', color: 'black' }, '16': { piece: 'alfil', color: 'black' }, '17': { piece: 'caballo', color: 'black' }, '18': { piece: 'torre', color: 'black' },
@@ -20,6 +21,7 @@ interface GameContextType {
     playing: 'white' | 'black',
     shadowEnabled: true | false,
     shadows: string[],
+    eaten: Cell[],
     onUpdateBoard: (dragging: string, draggingOver: string) => void,
     onDragStart: (row: number, col: number) => void,
     onDragEnter: (row: number, col: number) => void,
@@ -35,6 +37,7 @@ const GameContext = React.createContext<GameContextType>({
     playing: 'white',
     shadowEnabled: true,
     shadows: [],
+    eaten: [],
     onUpdateBoard: (dragging: string, draggingOver: string) => { },
     onDragStart: (row: number, col: number) => { },
     onDragEnter: (row: number, col: number) => { },
@@ -55,6 +58,11 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     const [draggingOver, setDraggingOver] = useState(null) // draggind-over coordinates
     const [shadowEnabled, setShadowEnabled] = useState(true)
     const [shadows, setShadows] = useState([])
+    const [eaten, setEaten] = useState([])
+
+    useEffect(() => {
+        console.log(eaten)
+    }, [eaten])
 
     const onUpdateBoardHandler = (dragging: string, draggingOver: string) => {
         // check if dragged inside board
@@ -67,6 +75,14 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                     // update board
                     setBoard(prev => {
                         const newBoard = { ...prev };
+                        // if eaten piece, save
+                        if (prev[draggingOver].piece !== null) {
+                            setEaten(prevEaten => {
+                                const curr = [...prevEaten];
+                                curr.push(prev[draggingOver]);
+                                return curr;
+                            })
+                        }
                         newBoard[draggingOver] = { piece: prev[dragging].piece, color: prev[dragging].color }
                         newBoard[dragging] = { piece: null, color: null }
                         return newBoard;
@@ -122,6 +138,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 playing: playing,
                 shadowEnabled: shadowEnabled,
                 shadows: shadows,
+                eaten: eaten,
                 onUpdateBoard: onUpdateBoardHandler,
                 onDragStart: onDragStartHandler,
                 onDragEnter: onDragEnterHandler,

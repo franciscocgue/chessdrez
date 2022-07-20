@@ -1,0 +1,44 @@
+.container {
+    height: 100vh;
+    padding: 1rem;
+    border: 3px solid red;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 40px;
+}
+
+.board {
+    width: calc(50% - 20px);
+    min-width: 482px;
+    border: 3px solid green;
+    flex-grow: 2
+}
+
+.config {
+    width: calc(50% - 20px);
+    border: 3px solid blue;
+}
+
+.nowplaying {
+    display: flex;
+    gap: 13px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.nowplaying div {
+    width: 60px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.black {
+    background-color: black;
+    border: 1px solid white;
+}
+
+.white {
+    background-color: white;
+    border: 1px solid black;
+}

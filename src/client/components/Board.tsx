@@ -43,7 +43,7 @@ const Board = () => {
     const gameCtx = useContext(GameContext);
 
     return (
-        <div draggable className={styles.board}
+        <div className={styles.board}
             onMouseLeave={e => {
                 // console.log('leaving')
                 if (gameCtx.dragging === null) {

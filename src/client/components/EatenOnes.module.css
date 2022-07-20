@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}

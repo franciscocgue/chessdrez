@@ -18,11 +18,9 @@ const Cell = ({ col, row, img }: Props) => {
     const cellColor = (row % 2 && col % 2) || (!(row % 2) && !(col % 2)) ? 'black' : 'white';
 
     return (
-        <div draggable
+        <div
             className={`${styles[cellColor]} ${styles.cell} ${gameCtx.shadowEnabled && gameCtx.shadows.includes(getCoords(row, col)) ? styles.shadow : ''}`}
-            onDragStart={e => {
-                gameCtx.onDragStart(row, col);
-            }}
+
             onDragEnter={e => {
                 e.stopPropagation()
                 gameCtx.onDragEnter(row, col);
@@ -35,7 +33,10 @@ const Cell = ({ col, row, img }: Props) => {
             }}
             onMouseEnter={e => gameCtx.onCellEntered(row, col)}
         >
-            <img className={`${styles['draggable']} ${styles['icon']}`}
+            <img onDragStart={e => {
+                gameCtx.onDragStart(row, col);
+            }}
+                className={`${styles['draggable']} ${styles['icon']}`}
                 src={img} width={'95%'}
             >
                 {/* {row},{col}
