@@ -6,7 +6,6 @@ import GameContext from './store/game-context';
 import styles from './App.module.css'
 
 const secondsToInterval = (seconds: number) => {
-    let interval = '';
     const minutesStr = Math.floor(seconds / 60).toString().padStart(2, '0');
     const secondsStr = Math.floor(seconds % 60).toString().padStart(2, '0');
 
@@ -51,7 +50,9 @@ const App = () => {
                 <Board />
             </div>
             <div className={styles.config}>
-                <div className={styles.nowplaying}><p>Player</p><div className={`${styles[gameCtx.playing]}`}></div><p>({secondsToInterval(playTime)})</p></div>
+                <div className={styles.nowplaying}><div className={`${styles[gameCtx.playing]}`}><p className={styles.player}>{'Player ' + gameCtx.playing}</p></div><p className={styles.timer}>{secondsToInterval(playTime)}</p></div>
+                <input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} /> 
+                <label htmlFor='shadowToggle'>Hide Shadow</label>
                 <EatenOnes color={'black'} />
                 <EatenOnes color={'white'} />
             </div>

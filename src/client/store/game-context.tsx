@@ -27,7 +27,8 @@ interface GameContextType {
     onDragEnter: (row: number, col: number) => void,
     onDragExitBoard: () => void,
     onDropOutsideBoard: () => void,
-    onCellEntered: (row: number, col: number) => void
+    onCellEntered: (row: number, col: number) => void,
+    onToggleShadow: () => void,
 }
 
 const GameContext = React.createContext<GameContextType>({
@@ -44,6 +45,7 @@ const GameContext = React.createContext<GameContextType>({
     onDragExitBoard: () => { },
     onDropOutsideBoard: () => { },
     onCellEntered: (row: number, col: number) => { },
+    onToggleShadow: () => { },
 });
 
 interface PropsType {
@@ -59,10 +61,6 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     const [shadowEnabled, setShadowEnabled] = useState(true)
     const [shadows, setShadows] = useState([])
     const [eaten, setEaten] = useState([])
-
-    useEffect(() => {
-        console.log(eaten)
-    }, [eaten])
 
     const onUpdateBoardHandler = (dragging: string, draggingOver: string) => {
         // check if dragged inside board
@@ -129,6 +127,10 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
         setShadows([]);
     }
 
+    const onToggleShadowHandler = () => {
+        setShadowEnabled(!shadowEnabled);
+    }
+
     return (
         <GameContext.Provider
             value={{
@@ -145,6 +147,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 onDragExitBoard: onDragExitBoardHandler,
                 onDropOutsideBoard: onDropOutsideBoardHandler,
                 onCellEntered: onCellEnteredHandler,
+                onToggleShadow: onToggleShadowHandler,
             }}>
             {children}
         </GameContext.Provider>
