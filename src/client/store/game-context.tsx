@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BoardType, Cell } from '../utils/types';
 import { getCoords, possibleMoves, getRowCol } from '../utils/logic';
-import Eaten from '../components/Eaten';
 
 const boardInitial: BoardType = {
     '11': { piece: 'torre', color: 'black' }, '12': { piece: 'caballo', color: 'black' }, '13': { piece: 'alfil', color: 'black' }, '14': { piece: 'reina', color: 'black' }, '15': { piece: 'rey', color: 'black' }, '16': { piece: 'alfil', color: 'black' }, '17': { piece: 'caballo', color: 'black' }, '18': { piece: 'torre', color: 'black' },
@@ -36,7 +35,7 @@ const GameContext = React.createContext<GameContextType>({
     dragging: null,
     draggingOver: null,
     playing: 'white',
-    shadowEnabled: true,
+    shadowEnabled: false,
     shadows: [],
     eaten: [],
     onUpdateBoard: (dragging: string, draggingOver: string) => { },
@@ -58,7 +57,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     const [playing, setPlaying] = useState<'white' | 'black'>('white')
     const [dragging, setDragging] = useState(null) // currently dragged piece coordinates
     const [draggingOver, setDraggingOver] = useState(null) // draggind-over coordinates
-    const [shadowEnabled, setShadowEnabled] = useState(true)
+    const [shadowEnabled, setShadowEnabled] = useState(false)
     const [shadows, setShadows] = useState([])
     const [eaten, setEaten] = useState([])
 

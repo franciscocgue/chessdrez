@@ -3,11 +3,12 @@ import React from 'react';
 import styles from './Eaten.module.css';
 
 interface Props {
-    icon: string
+    icon: string,
+    idx: number,
 }
 
-const Eaten = ({ icon }: Props) => {
-    return (<div className={styles.container}>
+const Eaten = ({ icon, idx }: Props) => {
+    return (<div key={idx} className={styles.container}>
         {icon}
     </div>)
 };

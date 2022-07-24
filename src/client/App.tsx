@@ -50,9 +50,9 @@ const App = () => {
                 <Board />
             </div>
             <div className={styles.config}>
-                <div className={styles.nowplaying}><div className={`${styles[gameCtx.playing]}`}><p className={styles.player}>{'Player ' + gameCtx.playing}</p></div><p className={styles.timer}>{secondsToInterval(playTime)}</p></div>
+                <div className={styles.nowplaying}><div className={`${styles[gameCtx.playing]}`}><p className={styles.player}>{'Player ' + gameCtx.playing}</p></div><p key={gameCtx.playing} title="Current move's time" className={styles.timer}>{secondsToInterval(playTime)}</p></div>
                 <input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} /> 
-                <label htmlFor='shadowToggle'>Hide Shadow</label>
+                <label title='Highlight possible moves' htmlFor='shadowToggle'>Show Help</label>
                 <EatenOnes color={'black'} />
                 <EatenOnes color={'white'} />
             </div>

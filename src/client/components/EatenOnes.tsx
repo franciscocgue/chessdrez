@@ -33,7 +33,7 @@ const EatenOnes = ({color} : Props) => {
 
     return (
         <div className={styles.container}>
-                {gameCtx.eaten.filter(item => item.color === color).map(item => <Eaten icon={icon[item.color][item.piece]} />)}
+                {gameCtx.eaten.filter(item => item.color === color).map((item, idx) => <Eaten key={idx} idx={idx} icon={icon[item.color][item.piece]} />)}
         </div>
     )
 };
