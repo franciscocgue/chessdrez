@@ -28,6 +28,7 @@ const Cell = ({ col, row, img }: Props) => {
             onDrop={e => {
                 e.preventDefault()
                 e.stopPropagation()
+                console.log('on drop Cell.tsx!')
                 gameCtx.onUpdateBoard(gameCtx.dragging, gameCtx.draggingOver)
                 // console.log('cell: dropped')
             }}
