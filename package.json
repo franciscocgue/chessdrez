@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "start:client": "webpack serve",
+    "start": "node src/server/index.js",
+    "local-start:server": "nodemon src/server/index.js",
+    "local-start:client": "webpack serve",
     "test": "jest"
   },
   "repository": {

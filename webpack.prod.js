@@ -60,7 +60,8 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    { loader: 'style-loader' },
+                    // https://stackoverflow.com/questions/64316510/uncaught-typeerror-webpack-imported-module-1-default-is-undefined-react-sas
+                    // { loader: 'style-loader' },
                     MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
