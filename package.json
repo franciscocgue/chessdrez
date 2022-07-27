@@ -8,6 +8,7 @@
     "start": "node src/server/index.js",
     "local-start:server": "nodemon src/server/index.js",
     "local-start:client": "webpack serve",
+    "local-start": "concurrently \"npm run local-start:server\" \"npm run local-start:client\"",
     "test": "jest"
   },
   "repository": {
@@ -35,6 +36,7 @@
   },
   "homepage": "https://github.com/franciscocgue/my-app-template#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
@@ -51,6 +53,7 @@
     "babel-jest": "^28.1.2",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
+    "concurrently": "^7.3.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",

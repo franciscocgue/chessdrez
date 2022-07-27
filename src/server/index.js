@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const routes = require('./routes');
+const cors = require('cors')
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -10,8 +12,13 @@ const html_file = path.resolve(dist_dir, 'index.html')
 //     res.send('<p>Welcome!</p>')
 // })
 
+app.use(cors());
+app.use(express.json())
+
 // serve static assets
 app.use(express.static(dist_dir))
+
+routes(app);
 
 app.get('*', (req, res) => {
     res.sendFile(html_file)

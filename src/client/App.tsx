@@ -1,62 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Board from './components/Board';
-import EatenOnes from './components/EatenOnes';
-import GameContext from './store/game-context';
+import React from 'react';
+import Game from './components/Game';
 
-import styles from './App.module.css'
-
-const secondsToInterval = (seconds: number) => {
-    const minutesStr = Math.floor(seconds / 60).toString().padStart(2, '0');
-    const secondsStr = Math.floor(seconds % 60).toString().padStart(2, '0');
-
-    return minutesStr + ':' + secondsStr;
-
-};
+const mockData = [
+    {
+        url: "some url1",
+        createdBy: "Moriarty",
+        createdDate: new Date().toLocaleString(),
+        numberPLayers: 2,
+    },
+    {
+        url: "some url2",
+        createdBy: "Chesser",
+        createdDate: new Date().toLocaleString(),
+        numberPLayers: 1,
+    },
+    {
+        url: "some url3",
+        createdBy: "Player12345",
+        createdDate: new Date().toLocaleString(),
+        numberPLayers: 1,
+    },
+]
 
 const App = () => {
 
-    const [playTime, setPlayTime] = useState(0);
-    const gameCtx = useContext(GameContext);
-
-
-    useEffect(() => {
-        setPlayTime(0);
-        const interval = setInterval(() => {
-            setPlayTime(prev => {
-                return prev + 1;
-            });
-        }, 1000)
-
-        return () => {
-            clearInterval(interval)
-        }
-
-    }, [gameCtx.playing])
-
     return (
-        <div className={styles.container}
-            onDragOver={e => e.preventDefault()}
-            onDrop={e => {
-                // dropped out of board
-                e.preventDefault()
-                gameCtx.onDropOutsideBoard();
-            }}
-            onDragEnter={e => {
-                e.preventDefault();
-                gameCtx.onDragExitBoard();
-            }}
-        >
-            <div className={styles.board}>
-                <Board />
-            </div>
-            <div className={styles.config}>
-                <div className={styles.nowplaying}><div className={`${styles[gameCtx.playing]}`}><p className={styles.player}>{'Player ' + gameCtx.playing}</p></div><p key={gameCtx.playing} title="Current move's time" className={styles.timer}>{secondsToInterval(playTime)}</p></div>
-                <input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} /> 
-                <label title='Highlight possible moves' htmlFor='shadowToggle'>Show Help</label>
-                <EatenOnes color={'black'} />
-                <EatenOnes color={'white'} />
-            </div>
-        </div>
+        <Game />
     )
 };
 
