@@ -1,9 +1,11 @@
+import { Application } from "express";
+
 const express = require('express');
 const path = require('path');
 const routes = require('./routes');
 const cors = require('cors')
 
-const app = express();
+const app = express() as Application;
 const port = process.env.PORT || 8080;
 const dist_dir = path.resolve(__dirname, '../../dist')
 const html_file = path.resolve(dist_dir, 'index.html')

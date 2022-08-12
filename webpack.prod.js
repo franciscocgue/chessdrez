@@ -16,7 +16,7 @@ module.exports = {
         port: 3000,
     },
     entry: {
-        main: path.resolve(__dirname, './src/client/index.js'),
+        main: path.resolve(__dirname, './src/client/index.tsx'),
     },
     output: {
         path: path.resolve(__dirname, './dist'),
