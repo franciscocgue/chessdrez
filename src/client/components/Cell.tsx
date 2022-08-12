@@ -34,15 +34,18 @@ const Cell = ({ col, row, img }: Props) => {
             }}
             onMouseEnter={e => gameCtx.onCellEntered(row, col)}
         >
-            <img onDragStart={e => {
+            <div onDragStart={e => {
                 gameCtx.onDragStart(row, col);
             }}
+                draggable
                 className={`${styles['draggable']} ${styles['icon']}`}
-                src={img} width={'95%'}
+            // src={img} 
+            // width={'95%'}
             >
+                {img}
                 {/* {row},{col}
             {piece} */}
-            </img>
+            </div>
         </div>
     )
 };

@@ -21,18 +21,18 @@ interface PieceImages {
     [key: string]: string,
 }[]
 const pieceImages: PieceImages = {
-    'peonwhite': peonwhite,
-    'peonblack': peonblack,
-    'torrewhite': torrewhite,
-    'torreblack': torreblack,
-    'caballowhite': caballowhite,
-    'caballoblack': caballoblack,
-    'alfilwhite': alfilwhite,
-    'alfilblack': alfilblack,
-    'reinawhite': reinawhite,
-    'reinablack': reinablack,
-    'reywhite': reywhite,
-    'reyblack': reyblack,
+    'peonwhite': '♙',
+    'peonblack': '♟',
+    'torrewhite': '♖',
+    'torreblack': '♜',
+    'caballowhite': '♘',
+    'caballoblack': '♞',
+    'alfilwhite': '♗',
+    'alfilblack': '♝',
+    'reinawhite': '♕',
+    'reinablack': '♛',
+    'reywhite': '♔',
+    'reyblack': '♚',
 }
 
 const rows: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
