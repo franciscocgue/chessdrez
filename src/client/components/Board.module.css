@@ -5,3 +5,24 @@
     flex-wrap: wrap;
     margin: auto;
 }
+
+@media (max-width: 1000px) and (orientation: landscape) {
+    .board {
+        width: calc(100vh - 2rem + 2px);
+        height: calc(100vh - 2rem + 2px);
+    }
+}
+
+@media (max-width: 1000px) and (orientation: landscape) {
+    .board {
+        width: calc(100vh - 2rem + 2px);
+        height: calc(100vh - 2rem + 2px);
+    }
+}
+
+@media (max-width: 1000px) and (orientation: portrait) {
+    .board {
+        width: calc(100vw - 2rem + 2px);
+        height: calc(100vw - 2rem + 2px);
+    }
+}

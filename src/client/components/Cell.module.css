@@ -46,3 +46,29 @@
     cursor: grabbing;
 }
 
+
+@media (max-width: 1000px) and (orientation: landscape) {
+    .cell {
+        width: calc((100vh - 2rem) / 8);
+        min-width: calc((100vh - 2rem) / 8);
+        height: calc((100vh - 2rem) / 8);
+        min-height: calc((100vh - 2rem) / 8);
+    }
+
+    .icon {
+        font-size: calc((80vh - 2rem) / 8);
+    }
+}
+
+@media (max-width: 1000px) and (orientation: portrait) {
+    .cell {
+        width: calc((100vw - 2rem) / 8);
+        min-width: calc((100vw - 2rem) / 8);
+        height: calc((100vw - 2rem) / 8);
+        min-height: calc((100vw - 2rem) / 8);
+    }
+
+    .icon {
+        font-size: calc((80vw - 2rem) / 8);
+    }
+}
