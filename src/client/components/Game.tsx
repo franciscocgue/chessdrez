@@ -46,7 +46,17 @@ const Game = () => {
                 gameCtx.onDragExitBoard();
             }}
         >
-            <button onClick={async () => {
+            <div className={styles.board}>
+                <Board />
+            </div>
+            <div className={styles.config}>
+                <div className={styles.nowplaying}><div className={`${styles[gameCtx.playing]}`}><p className={styles.player}>{'Player ' + gameCtx.playing}</p></div><p key={gameCtx.playing} title="Current move's time" className={styles.timer}>{secondsToInterval(playTime)}</p></div>
+                <input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} />
+                <label title='Highlight possible moves' htmlFor='shadowToggle'>Show Help</label>
+                <EatenOnes color={'black'} />
+                <EatenOnes color={'white'} />
+            </div>
+            {/* <button onClick={async () => {
                 const response = await fetch(
                     'http://localhost:8080/mock-response',
                     {
@@ -62,18 +72,8 @@ const Game = () => {
                     const data = await response.json();
                     console.log(data)
                 }
-                
-            }}>Click me!</button>
-            <div className={styles.board}>
-                <Board />
-            </div>
-            <div className={styles.config}>
-                <div className={styles.nowplaying}><div className={`${styles[gameCtx.playing]}`}><p className={styles.player}>{'Player ' + gameCtx.playing}</p></div><p key={gameCtx.playing} title="Current move's time" className={styles.timer}>{secondsToInterval(playTime)}</p></div>
-                <input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} />
-                <label title='Highlight possible moves' htmlFor='shadowToggle'>Show Help</label>
-                <EatenOnes color={'black'} />
-                <EatenOnes color={'white'} />
-            </div>
+
+            }}>Click me!</button> */}
         </div>
     )
 };
