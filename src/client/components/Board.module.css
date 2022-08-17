@@ -1,28 +1,15 @@
 .board {
     display: flex;
-    width: 482px;
+    width: min(60vw - 2rem, 100vh - 2rem - 6vmin);
+    height: min(60vw - 2rem, 100vh - 2rem - 6vmin);
     border: 1px solid gray;
     flex-wrap: wrap;
     margin: auto;
 }
 
-@media (max-width: 1000px) and (orientation: landscape) {
+@media (max-width: 1000px) {
     .board {
-        width: calc(100vh - 2rem + 2px);
-        height: calc(100vh - 2rem + 2px);
-    }
-}
-
-@media (max-width: 1000px) and (orientation: landscape) {
-    .board {
-        width: calc(100vh - 2rem + 2px);
-        height: calc(100vh - 2rem + 2px);
-    }
-}
-
-@media (max-width: 1000px) and (orientation: portrait) {
-    .board {
-        width: calc(100vw - 2rem + 2px);
-        height: calc(100vw - 2rem + 2px);
+        width: min(100vw - 2rem, 100vh - 2rem - 6vmin);
+        height: min(100vw - 2rem, 100vh - 2rem - 6vmin);       
     }
 }

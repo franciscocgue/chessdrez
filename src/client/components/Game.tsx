@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Board from '../components/Board';
 import EatenOnes from '../components/EatenOnes';
 import GameContext from '../store/game-context';
+import { ImMoveDown } from 'react-icons/im'
 
 import styles from './Game.module.css'
 
@@ -50,11 +51,15 @@ const Game = () => {
                 <Board />
             </div>
             <div className={styles.config}>
-                <div className={styles.nowplaying}><div className={`${styles[gameCtx.playing]}`}><p className={styles.player}>{'Player ' + gameCtx.playing}</p></div><p key={gameCtx.playing} title="Current move's time" className={styles.timer}>{secondsToInterval(playTime)}</p></div>
-                <input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} />
-                <label title='Highlight possible moves' htmlFor='shadowToggle'>Show Help</label>
-                <EatenOnes color={'black'} />
-                <EatenOnes color={'white'} />
+                <label className={styles['label-help']} title='Highlight possible moves' ><ImMoveDown />Moves<input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} /> </label>
+                <div className={styles['config-player']}>
+                    <div className={styles.nowplaying}><div className={`${styles['white']}`}><p className={styles.player}>{'Player white'}</p></div><p key={'white'} title="Current move's time" className={`${gameCtx.playing === 'white' ? styles.timer : styles.hide}`}>{secondsToInterval(playTime)}</p></div>
+                    <EatenOnes color={'white'} />
+                </div>
+                <div className={styles['config-player']}>
+                    <div className={styles.nowplaying}><div className={`${styles['black']}`}><p className={styles.player}>{'Player black'}</p></div><p key={'black'} title="Current move's time" className={`${gameCtx.playing === 'black' ? styles.timer : styles.hide}`}>{secondsToInterval(playTime)}</p></div>
+                    <EatenOnes color={'black'} />
+                </div>
             </div>
             {/* <button onClick={async () => {
                 const response = await fetch(

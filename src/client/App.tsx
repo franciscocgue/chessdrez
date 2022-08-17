@@ -1,5 +1,7 @@
 import React from 'react';
 import Game from './components/Game';
+import Navbar from './components/Navbar';
+import styles from './App.module.css';
 
 const mockData = [
     {
@@ -25,7 +27,10 @@ const mockData = [
 const App = () => {
 
     return (
-        <Game />
+        <div className={styles.container}>
+            <Navbar />
+            <Game />
+        </div>
     )
 };
 

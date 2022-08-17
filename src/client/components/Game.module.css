@@ -2,28 +2,39 @@
 
 .container {
     width: 100vw;
-    height: 100%;
-    min-height: 100vh;
-    border: 3px solid red;
+    /* min-height: calc(100vh - 6vmin); */
+    /* border: 1px solid red; */
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
     /* gap: 40px; */
 }
 
 .board {
     padding: 1rem;
-    width: calc(50% - 0px);
-    min-width: 482px;
-    /* border: 3px solid green; */
+    width: 60%;
+    /* border: 1px solid green; */
     flex-grow: 2;
-    border-right: 2px solid grey;
 }
 
 .config {
+    /* padding: 1rem; */
+    width: 40%;
+    /* border: 1px solid blue; */
+    display: flex;
+    flex-direction: column;
+}
+
+.label-help {
+    display: flex;
     padding: 1rem;
-    width: calc(50% - 0px);
-    border: 3px solid blue;
+    font-size: 3.5vmin;
+}
+
+.config-player {
+    margin: 1rem;
+    width: calc(100% - 2rem);
 }
 
 .nowplaying {
@@ -34,10 +45,14 @@
 }
 
 .nowplaying div {
-    width: 130px;
-    height: 35px;
+    width: 250px;
+    height: 45px;
     border-radius: 5px;
     text-align: center;
+}
+
+.hide {
+    display: none;
 }
 
 .black {
@@ -45,7 +60,6 @@
     background-color: black;
     color: white;
     border: 1px solid white;
-    transition: color 0.85s;
 }
 
 .white {
@@ -53,58 +67,44 @@
     background-color: white;
     color: black;
     border: 1px solid black;
-    transition: color 0.85s;
 }
 
 .player {
     font-family: 'Koulen', cursive;
-    font-size: larger;
-    margin: auto;
+    font-size: 19pt;
+    margin: 0;
     padding: 0;
 }
 
 .timer {
     font-family: 'Koulen', cursive;
-    width: 60px;
-    height: 35px;
+    width: 100px;
+    height: 45px;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: larger;
+    font-size: 1.5rem;
     color: white;
-    background-color: darkblue;
+    background-color: rgb(56, 56, 56);
     border-radius: 5px;
     animation-name: time;
-    animation-duration: 1s;
+    animation-duration: 0.7s;
 }
 
 
 @keyframes time {
-    0%   {width: 60px; transform: rotate(0deg);}
-    50%  {width: 60px; transform: rotate(180deg);}
-    100% {width: 60px; transform: rotate(180deg);}
+    0%   {transform: scale(0);}
+    100%  {transform: scale(1);}
+    /* 66% {width: 60px; transform: scale(0.5);}
+    100%  {width: 60px; transform: scale(1);} */
   }
 
-@media (max-width: 1000px) and (orientation: landscape) {
+@media (max-width: 1000px) {
     .board {
-        width: calc(100vh - 2rem + 2px);
-        height: calc(100vh - 2rem + 2px);
-    }
-
-    .config {
         width: 100%;
-    }
-
-    .container {
-        flex-direction: column;
-    }
-}
-
-@media (max-width: 1000px) and (orientation: portrait) {
-    .board {
-        width: calc(100vw - 2rem + 2px);
-        height: calc(100vw - 2rem + 2px);
+        height: 100%;
     }
 
     .config {

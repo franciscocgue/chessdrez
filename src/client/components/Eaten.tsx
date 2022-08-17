@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Eaten = ({ icon, idx }: Props) => {
-    return (<div key={idx} className={styles.container}>
+    return (<div key={idx} className={`${icon === null || icon === '?' ? styles['container-empty'] : styles.container}`}>
         {icon}
     </div>)
 };

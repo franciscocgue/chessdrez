@@ -4,7 +4,7 @@
     justify-content: center;
     height: 50px;
     width: 50px;
-    border: 1px solid rgb(183, 183, 183);
+    border: 1px solid rgb(198, 198, 198);
     font-size: 2.5rem;
     font-weight: 500;
     animation: eaten 1s;
@@ -13,5 +13,17 @@
 @keyframes eaten {
     0% {background-color: white;}
     50% {background-color: red;}
-    1000% {background-color: white;}
+    100% {background-color: white;}
+}
+
+.container-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    border: 1px solid rgb(198, 198, 198);
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: rgb(198, 198, 198);
 }

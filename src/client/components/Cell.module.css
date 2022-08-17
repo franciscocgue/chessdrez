@@ -1,8 +1,12 @@
 .cell {
-    width: 60px;
-    height: 60px;
-    min-width: 60px;
-    min-height: 60px;
+    /* https://stackoverflow.com/questions/5445491/height-equal-to-dynamic-width-css-fluid-layout */
+    /* width: calc(100% / 8); */
+    height: calc(100% / 8);
+    width: calc(100% / 8);
+    /* height: var(--cell-width);
+    width: var(--cell-width); */
+    /* height: 0; */
+    /* padding-bottom: calc(100% / 8); */
     border: 1px solid rgb(235, 235, 235);
     z-index: 9;
 }
@@ -28,12 +32,14 @@
 .icon {
     margin: auto;
     display: block;
-    font-size: 45px;
+    /* @TODO: change 'font-size' with media query if board is 100% of width*/
+    font-size: 4vw; 
     font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 10;
+    height: 100%;
 }
 
 .draggable {
@@ -46,29 +52,8 @@
     cursor: grabbing;
 }
 
-
-@media (max-width: 1000px) and (orientation: landscape) {
-    .cell {
-        width: calc((100vh - 2rem) / 8);
-        min-width: calc((100vh - 2rem) / 8);
-        height: calc((100vh - 2rem) / 8);
-        min-height: calc((100vh - 2rem) / 8);
-    }
-
-    .icon {
-        font-size: calc((80vh - 2rem) / 8);
-    }
-}
-
-@media (max-width: 1000px) and (orientation: portrait) {
-    .cell {
-        width: calc((100vw - 2rem) / 8);
-        min-width: calc((100vw - 2rem) / 8);
-        height: calc((100vw - 2rem) / 8);
-        min-height: calc((100vw - 2rem) / 8);
-    }
-
-    .icon {
-        font-size: calc((80vw - 2rem) / 8);
+@media (max-width: 1000px) {
+    .icon{
+        font-size: 7vmin; 
     }
 }
