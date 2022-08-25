@@ -30,6 +30,12 @@
     display: flex;
     padding: 1rem;
     font-size: 3.5vmin;
+    width: fit-content;
+    outline: none;
+}
+
+.label-help input {
+    outline: none;
 }
 
 .config-player {

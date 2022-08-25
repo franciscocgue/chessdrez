@@ -69,9 +69,11 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     }, [playing])
     useEffect(() => {
         console.log('dragging')
+        console.log(dragging)
     }, [dragging])
     useEffect(() => {
         console.log('draggingOver')
+        console.log(draggingOver)
     }, [draggingOver])
     useEffect(() => {
         console.log('shadowEnabled')
@@ -113,12 +115,15 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
             }
             setDragging(null);
             setDraggingOver(null);
+            setShadows([]);
         }
     }
 
     const onDragStartHandler = (row: number, col: number) => {
         const coordinates = getCoords(row, col);
-        setDragging(coordinates);
+        if (board[getCoords(row, col)].color === playing) {
+            setDragging(coordinates);
+        }
         // console.log('start dragging: ' + coordinates)
     }
 

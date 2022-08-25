@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import GameContext from '../store/game-context';
-import { getCoords } from '../utils/logic';
+import { getCoords, possibleMoves } from '../utils/logic';
 
 import styles from './Cell.module.css';
 
@@ -32,11 +32,27 @@ const Cell = ({ col, row, img }: Props) => {
                 gameCtx.onUpdateBoard(gameCtx.dragging, gameCtx.draggingOver)
                 // console.log('cell: dropped')
             }}
+            onClick={e => {
+                // similar to onDrop but mobile device
+                if (gameCtx.dragging) {
+                    e.preventDefault()
+                    e.stopPropagation()
+                    console.log('on click Cell.tsx!')
+                    gameCtx.onDragEnter(row, col) // sets draggingOver (as target)
+                    gameCtx.onUpdateBoard(gameCtx.dragging, getCoords(row, col))
+                    // console.log('cell: dropped')
+                }
+            }}
             onMouseEnter={e => gameCtx.onCellEntered(row, col)}
         >
             <div onDragStart={e => {
                 gameCtx.onDragStart(row, col);
             }}
+                onClick={e => {
+                    // similar to onDragStart but mobile device
+                    console.log('inner div clicked')
+                    gameCtx.onDragStart(row, col);
+                }}
                 draggable
                 className={`${styles['draggable']} ${styles['icon']}`}
             // src={img} 

@@ -22,7 +22,7 @@
 .cell:hover {
     /* border: 3px solid orange; */
     /* background-color: rgb(255, 168, 7, 0.5); */
-    box-shadow: 0 0 2px 2px rgba(255, 165, 0, 1) inset;
+    box-shadow: 0 0 5px 5px rgba(255, 165, 0, 1) inset;
 }
 
 .shadow {
