@@ -6,23 +6,13 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
-    devServer: {
-        historyApiFallback: true,
-        static: path.resolve(__dirname, './dist'),
-        open: true,
-        compress: true,
-        hot: true,
-        port: 3000,
-    },
+    mode: 'production',
     entry: {
         main: path.resolve(__dirname, './src/client/index.tsx'),
     },
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
-        // https://stackoverflow.com/questions/48371967/using-react-router-with-multiple-url-segments
-        publicPath: '/',
     },
     plugins: [
         new HtmlWebpackPlugin({

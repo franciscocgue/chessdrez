@@ -11,7 +11,7 @@ const App = () => {
             <Route path='/home' element={
                 <div>
                     <Navbar />
-                    <p style={{marginLeft: '2rem'}}>Oops this is not yet finished 😳 (but you can check the Chess section!)</p>
+                    <p style={{ marginLeft: '2rem' }}>Oops this is not yet finished 😳 (but you can check the Chess section!)</p>
                 </div>
             } />
             <Route path='/chess' element={
@@ -20,6 +20,12 @@ const App = () => {
                     <Game />
                 </div>}
             />
+            <Route path='*' element={
+                <div>
+                    <Navbar />
+                    <p style={{ marginLeft: '2rem' }}>Oops this is not yet finished 😳 (but you can check the Chess section!)</p>
+                </div>
+            } />
         </Routes >
 
 
