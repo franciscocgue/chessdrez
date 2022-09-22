@@ -21,6 +21,8 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: '[name].bundle.js',
+        // https://stackoverflow.com/questions/48371967/using-react-router-with-multiple-url-segments
+        publicPath: '/',
     },
     plugins: [
         new HtmlWebpackPlugin({

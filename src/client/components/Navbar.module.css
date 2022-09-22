@@ -17,3 +17,7 @@
     cursor: pointer;
     font-size: 3vmin;
 }
+
+.container a {
+    align-self: center;
+}

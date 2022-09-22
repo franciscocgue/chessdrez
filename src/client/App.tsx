@@ -2,35 +2,27 @@ import React from 'react';
 import Game from './components/Game';
 import Navbar from './components/Navbar';
 import styles from './App.module.css';
-
-const mockData = [
-    {
-        url: "some url1",
-        createdBy: "Moriarty",
-        createdDate: new Date().toLocaleString(),
-        numberPLayers: 2,
-    },
-    {
-        url: "some url2",
-        createdBy: "Chesser",
-        createdDate: new Date().toLocaleString(),
-        numberPLayers: 1,
-    },
-    {
-        url: "some url3",
-        createdBy: "Player12345",
-        createdDate: new Date().toLocaleString(),
-        numberPLayers: 1,
-    },
-]
+import { Routes, Route } from 'react-router-dom';
 
 const App = () => {
 
     return (
-        <div className={styles.container}>
-            <Navbar />
-            <Game />
-        </div>
+        <Routes>
+            <Route path='/home' element={
+                <div>
+                    <Navbar />
+                    <p style={{marginLeft: '2rem'}}>Oops this is not yet finished 😳 (but you can check the Chess section!)</p>
+                </div>
+            } />
+            <Route path='/chess' element={
+                <div className={styles.container}>
+                    <Navbar />
+                    <Game />
+                </div>}
+            />
+        </Routes >
+
+
     )
 };
 
