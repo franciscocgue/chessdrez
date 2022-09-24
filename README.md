@@ -24,6 +24,27 @@ and more!
 
 <hr>
 
+## Install and run?
+
+**In dev mode**, with hot reloading to see changes live:
+
+`npm install`
+
+`npm run local-start`
+
+That will start the React app in port 3000 (http://localhost:3000/). The server will be on port 8080.
+
+**In prod mode** (or a prod attempt, anyway):
+
+`npm install`
+
+`npm run start`
+
+The application will then be available in http://localhost:8080/.
+
+
+<hr>
+
 ### Disclaimer
 
 The words *practice*, *hobby*, *test*, *learn*... might give a clue already 😜
