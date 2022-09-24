@@ -11,7 +11,10 @@ const App = () => {
             <Route path='/home' element={
                 <div>
                     <Navbar />
-                    <p style={{ marginLeft: '2rem' }}>Oops this is not yet finished 😳 (but you can check the Chess section!)</p>
+                    <div style={{ marginLeft: '2rem' }}>
+                        <p>Oops this is not yet finished 😳 (but you can check the Chess section!)</p>
+                        <p>Wanna check the repo? <a href='https://github.com/franciscocgue/chessdrez'>Chessdrez</a></p>
+                    </div>
                 </div>
             } />
             <Route path='/chess' element={
