@@ -29,20 +29,9 @@ routes(app);
 app.get('/', (req, res) => {
     res.sendFile(html_file)
 })
-// Note: '*' is serving all, so it might serve js or other files; 
-// Then you might see error Uncaught SyntaxError: Unexpected token '<'
-// Need to check what is wrong with 'app.use(express.static(dist_dir))' above
-
-// @TODO: when issue above solved, remove below lines
-app.get('/home', (req, res) => {
-    res.sendFile(html_file)
-})
-app.get('/chess', (req, res) => {
-    res.sendFile(html_file)
-})
 
 app.get('*', (req, res) => {
-    res.send('<p>Oh! Not found! Check <u>/home</u> or <u>/chess</u></p>')
+    res.sendFile(html_file)
 })
 
 app.listen(port, () => {
