@@ -11,9 +11,9 @@ const App = () => {
             <Route path='/home' element={
                 <div>
                     <Navbar />
-                    <div style={{ marginLeft: '2rem' }}>
+                    <div style={{ marginLeft: '2rem', marginTop: '4rem'}}>
                         <p>Oops this is not yet finished 😳 (but you can check the Chess section!)</p>
-                        <p>Wanna check the repo? <a href='https://github.com/franciscocgue/chessdrez'>Chessdrez</a></p>
+                        <p>Wanna check the <b>Github repo</b>? <a target='_blank' href='https://github.com/franciscocgue/chessdrez'>Chessdrez</a></p>
                     </div>
                 </div>
             } />
