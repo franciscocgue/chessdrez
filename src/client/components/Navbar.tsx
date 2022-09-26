@@ -6,14 +6,25 @@ const Navbar = () => {
 
     return (
         <ul className={styles.container}>
-            <NavLink to={'/home'} style={{color: 'white', textDecoration: 'none'}}>
-                <li>Home</li>
+            <NavLink
+                to={'/home'}
+                className={({ isActive }) =>
+                    (isActive ? styles.active : "")}
+                style={{ color: 'white', textDecoration: 'none' }}
+            >
+                <div>Home</div>
             </NavLink>
-            <NavLink to={'/chess'} style={{color: 'white', textDecoration: 'none'}}>
-                <li>Chess</li>
+            <NavLink
+                to={'/chess'}
+                className={({ isActive }) =>
+                    (isActive ? styles.active : "")}
+                style={{ color: 'white', textDecoration: 'none' }}
+            >
+                <div>Chess</div>
             </NavLink>
         </ul>
     )
 }
 
 export default Navbar;
+

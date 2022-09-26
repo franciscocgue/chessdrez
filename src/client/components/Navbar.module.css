@@ -11,13 +11,23 @@
     justify-content: flex-start;
 }
 
-.container li {
+.container div {
     list-style-type: none;
     margin: auto 2rem;
     cursor: pointer;
     font-size: 3vmin;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container a {
     align-self: center;
+    height: 100%;
+}
+
+.active {
+    /* font-weight: bold; */
+    background-color: rgb(95, 95, 95);
 }
