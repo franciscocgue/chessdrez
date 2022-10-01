@@ -10,6 +10,11 @@ interface Cell {
     color: null | 'black' | 'white',
 };
 
+interface Move {
+    pieceFrom: Piece,
+    pieceTo: Piece 
+};
+
 interface BoardType {
     [key: string]: Cell,
 }[]
@@ -28,4 +33,5 @@ export {
     type Piece,
     type Cell,
     type BoardType,
+    type Move,
 }

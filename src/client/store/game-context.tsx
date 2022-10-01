@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BoardType, Cell } from '../utils/types';
+import { BoardType, Cell, Move } from '../utils/types';
 import { getCoords, possibleMoves, getRowCol } from '../utils/logic';
 
 const boardInitial: BoardType = {
@@ -21,6 +21,7 @@ interface GameContextType {
     shadowEnabled: true | false,
     shadows: string[],
     eaten: Cell[],
+    history: Move[],
     onUpdateBoard: (dragging: string, draggingOver: string) => void,
     onDragStart: (row: number, col: number) => void,
     onDragEnter: (row: number, col: number) => void,
@@ -38,6 +39,7 @@ const GameContext = React.createContext<GameContextType>({
     shadowEnabled: false,
     shadows: [],
     eaten: [],
+    history: [],
     onUpdateBoard: (dragging: string, draggingOver: string) => { },
     onDragStart: (row: number, col: number) => { },
     onDragEnter: (row: number, col: number) => { },
@@ -57,6 +59,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     const [playing, setPlaying] = useState<'white' | 'black'>('white')
     const [dragging, setDragging] = useState(null) // currently dragged piece coordinates
     const [draggingOver, setDraggingOver] = useState(null) // draggind-over coordinates
+    const [history, setHistory] = useState([]);
     const [shadowEnabled, setShadowEnabled] = useState(false)
     const [shadows, setShadows] = useState([])
     const [eaten, setEaten] = useState([])
@@ -84,6 +87,9 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     useEffect(() => {
         console.log('eaten')
     }, [eaten])
+    useEffect(() => {
+        console.log('History: ', history)
+    }, [history])
 
     const onUpdateBoardHandler = (dragging: string, draggingOver: string) => {
         // check if dragged inside board
@@ -110,6 +116,26 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                         newBoard[dragging] = { piece: null, color: null }
                         return newBoard;
                     })
+                    // Update history
+                    setHistory((prev) => {
+                        const prevHistory = [...prev];
+                        prevHistory.push({
+                            pieceFrom: {
+                                row:draggingRowCol.row,
+                                col:draggingRowCol.col,
+                                piece:board[dragging].piece,
+                                color:board[dragging].color,
+                            },
+                            pieceTo: {
+                                row:getRowCol(draggingOver).row,
+                                col:getRowCol(draggingOver).col,
+                                piece:board[dragging].piece,
+                                color:board[dragging].color,
+                            },
+                        })
+                        return prevHistory;
+                    })
+                    // Switch player
                     setPlaying(prev => prev === 'white' ? 'black' : 'white')
                 };
             }
@@ -171,6 +197,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 shadowEnabled: shadowEnabled,
                 shadows: shadows,
                 eaten: eaten,
+                history: history,
                 onUpdateBoard: onUpdateBoardHandler,
                 onDragStart: onDragStartHandler,
                 onDragEnter: onDragEnterHandler,

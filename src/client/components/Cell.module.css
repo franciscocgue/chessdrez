@@ -25,9 +25,14 @@
     box-shadow: 0 0 5px 5px rgba(255, 165, 0, 1) inset;
 }
 
+.last-move {
+    box-shadow: 0 0 0 100px rgb(124, 157, 255) inset;   
+}
+
 .shadow {
     box-shadow: 0 0 0 100px rgba(255, 165, 0, 1) inset;
 }
+
 
 .icon {
     margin: auto;

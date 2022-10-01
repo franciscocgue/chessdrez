@@ -3,18 +3,16 @@ import Game from './components/Game';
 import Navbar from './components/Navbar';
 import styles from './App.module.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import Home from './components/Home';
 
 const App = () => {
 
     return (
         <Routes>
             <Route path='/home' element={
-                <div>
+                <div className={styles.container}>
                     <Navbar />
-                    <div style={{ marginLeft: '2rem', marginTop: '4rem' }}>
-                        <p>Oops this is not yet finished 😳 (but you can check the Chess section!)</p>
-                        <p>Wanna check the <b>Github repo</b>? <a target='_blank' href='https://github.com/franciscocgue/chessdrez'>Chessdrez</a></p>
-                    </div>
+                    <Home />
                 </div>
             } />
             <Route path='/chess' element={

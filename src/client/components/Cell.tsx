@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import GameContext from '../store/game-context';
 import { getCoords, possibleMoves } from '../utils/logic';
 
@@ -19,7 +19,12 @@ const Cell = ({ col, row, img }: Props) => {
 
     return (
         <div
-            className={`${styles[cellColor]} ${styles.cell} ${gameCtx.shadowEnabled && gameCtx.shadows.includes(getCoords(row, col)) ? styles.shadow : ''}`}
+            className={`${styles[cellColor]} 
+            ${styles.cell} 
+            ${gameCtx.history.length === 0 ? '' : ((gameCtx.history[gameCtx.history.length - 1].pieceFrom.col === col && gameCtx.history[gameCtx.history.length - 1].pieceFrom.row === row)
+                    || (gameCtx.history[gameCtx.history.length - 1].pieceTo.col === col && gameCtx.history[gameCtx.history.length - 1].pieceTo.row === row)) ? styles['last-move'] : ''}
+            ${gameCtx.shadowEnabled && gameCtx.shadows.includes(getCoords(row, col)) ? styles.shadow : ''} 
+            `}
 
             onDragEnter={e => {
                 e.stopPropagation()

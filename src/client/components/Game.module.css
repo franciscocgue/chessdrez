@@ -26,10 +26,28 @@
     flex-direction: column;
 }
 
+.move-help {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    font-size: 2.7vmin;
+    width: fit-content; 
+}
+
+.move-help p {
+    color: grey;
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.move-help p span {
+    color: black;
+}
+
 .label-help {
     display: flex;
     padding: 1rem;
-    font-size: 3.5vmin;
+    font-size: 3vmin;
     width: fit-content;
     outline: none;
 }
@@ -39,7 +57,7 @@
 }
 
 .config-player {
-    margin: 1rem;
+    margin: 0.5rem;
     width: calc(100% - 2rem);
 }
 

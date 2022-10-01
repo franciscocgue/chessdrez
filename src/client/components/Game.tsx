@@ -2,7 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import Board from '../components/Board';
 import EatenOnes from '../components/EatenOnes';
 import GameContext from '../store/game-context';
-import { ImMoveDown } from 'react-icons/im'
+import { ImMoveDown } from 'react-icons/im';
+import { GoDeviceMobile } from 'react-icons/go';
+import { GrPersonalComputer } from 'react-icons/gr';
+
 
 import styles from './Game.module.css'
 
@@ -52,7 +55,11 @@ const Game = () => {
                 <Board />
             </div>
             <div className={styles.config}>
-                <label className={styles['label-help']} title='Highlight possible moves' ><ImMoveDown />Moves<input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} /> </label>
+                <div className={styles['move-help']}>
+                    <p><span><GoDeviceMobile /></span>Tap once to select piece, tap again to move!</p>
+                    <p><span><GrPersonalComputer /></span> Either tap, or click and drag!</p>
+                </div>
+                <label className={styles['label-help']} title='Highlight possible moves' ><ImMoveDown /> Show legal moves<input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} /> </label>
                 <div className={styles['config-player']}>
                     <div className={styles.nowplaying}><div className={`${styles['white']}`}><p className={styles.player}>{'Player white'}</p></div><p key={'white'} title="Current move's time" className={`${gameCtx.playing === 'white' ? styles.timer : styles.hide}`}>{secondsToInterval(playTime)}</p></div>
                     <EatenOnes color={'white'} />
