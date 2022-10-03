@@ -1,7 +1,7 @@
 .board {
     display: flex;
-    width: min(60vw - 2rem, 100vh - 2rem - 6vmin);
-    height: min(60vw - 2rem, 100vh - 2rem - 6vmin);
+    width: min(60vw - 2rem, 100vh - 2rem - 8vmin);
+    height: min(60vw - 2rem, 100vh - 2rem - 8vmin);
     border: 1px solid gray;
     flex-wrap: wrap;
     margin: auto;
@@ -9,7 +9,7 @@
 
 @media (max-width: 1000px) {
     .board {
-        width: min(100vw - 2rem, 100vh - 2rem - 6vmin);
-        height: min(100vw - 2rem, 100vh - 2rem - 6vmin);       
+        width: min(100vw - 2rem, 100vh - 2rem - 8vmin);
+        height: min(100vw - 2rem, 100vh - 2rem - 8vmin);       
     }
 }

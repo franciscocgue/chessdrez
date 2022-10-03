@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: row;
     height: 8vmin;
+    /* if height changes, change Board.module.css */
     justify-content: flex-start;
 }
 
