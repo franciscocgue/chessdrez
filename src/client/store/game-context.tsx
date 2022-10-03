@@ -19,6 +19,7 @@ interface GameContextType {
     draggingOver: string | null, // cell coordinates over which piece is dragged
     playing: 'white' | 'black',
     shadowEnabled: true | false,
+    showLastMove: true | false,
     shadows: string[],
     eaten: Cell[],
     history: Move[],
@@ -29,6 +30,7 @@ interface GameContextType {
     onDropOutsideBoard: () => void,
     onCellEntered: (row: number, col: number) => void,
     onToggleShadow: () => void,
+    onToggleLastMove: () => void,
 }
 
 const GameContext = React.createContext<GameContextType>({
@@ -37,6 +39,7 @@ const GameContext = React.createContext<GameContextType>({
     draggingOver: null,
     playing: 'white',
     shadowEnabled: false,
+    showLastMove: false,
     shadows: [],
     eaten: [],
     history: [],
@@ -47,6 +50,7 @@ const GameContext = React.createContext<GameContextType>({
     onDropOutsideBoard: () => { },
     onCellEntered: (row: number, col: number) => { },
     onToggleShadow: () => { },
+    onToggleLastMove: () => { },
 });
 
 interface PropsType {
@@ -61,6 +65,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     const [draggingOver, setDraggingOver] = useState(null) // draggind-over coordinates
     const [history, setHistory] = useState([]);
     const [shadowEnabled, setShadowEnabled] = useState(false)
+    const [showLastMove, setShowLastMove] = useState(false)
     const [shadows, setShadows] = useState([])
     const [eaten, setEaten] = useState([])
 
@@ -121,16 +126,16 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                         const prevHistory = [...prev];
                         prevHistory.push({
                             pieceFrom: {
-                                row:draggingRowCol.row,
-                                col:draggingRowCol.col,
-                                piece:board[dragging].piece,
-                                color:board[dragging].color,
+                                row: draggingRowCol.row,
+                                col: draggingRowCol.col,
+                                piece: board[dragging].piece,
+                                color: board[dragging].color,
                             },
                             pieceTo: {
-                                row:getRowCol(draggingOver).row,
-                                col:getRowCol(draggingOver).col,
-                                piece:board[dragging].piece,
-                                color:board[dragging].color,
+                                row: getRowCol(draggingOver).row,
+                                col: getRowCol(draggingOver).col,
+                                piece: board[dragging].piece,
+                                color: board[dragging].color,
                             },
                         })
                         return prevHistory;
@@ -187,6 +192,10 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
         setShadowEnabled(!shadowEnabled);
     }
 
+    const onToggleLastMoveHandler = () => {
+        setShowLastMove(!showLastMove);
+    }
+
     return (
         <GameContext.Provider
             value={{
@@ -195,6 +204,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 draggingOver: draggingOver,
                 playing: playing,
                 shadowEnabled: shadowEnabled,
+                showLastMove: showLastMove,
                 shadows: shadows,
                 eaten: eaten,
                 history: history,
@@ -205,6 +215,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 onDropOutsideBoard: onDropOutsideBoardHandler,
                 onCellEntered: onCellEnteredHandler,
                 onToggleShadow: onToggleShadowHandler,
+                onToggleLastMove: onToggleLastMoveHandler,
             }}>
             {children}
         </GameContext.Provider>
