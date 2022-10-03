@@ -23,7 +23,7 @@ const App = () => {
             />
             <Route
                 path="*"
-                element={<Navigate to="/home" replace />}
+                element={<Navigate to="/chess" replace />}
             />
         </Routes >
 
