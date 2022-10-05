@@ -4,7 +4,7 @@ import EatenOnes from '../components/EatenOnes';
 import GameContext from '../store/game-context';
 import { ImMoveDown } from 'react-icons/im';
 import { GoDeviceMobile } from 'react-icons/go';
-import { GrPersonalComputer } from 'react-icons/gr';
+import { MdComputer } from 'react-icons/md';
 import { MdOutlineExpandLess } from 'react-icons/md';
 import { MdOutlineExpandMore } from 'react-icons/md';
 import { IoMdOptions } from 'react-icons/io';
@@ -68,7 +68,7 @@ const Game = () => {
                             <div className={styles['icon']}><MdHelpOutline /></div>
                             <div className={styles['help-instructions']}>
                                 <p><span><GoDeviceMobile /> <AiOutlineArrowRight /></span> Tap once to select piece, tap again to move!</p>
-                                <p><span><GrPersonalComputer /> <AiOutlineArrowRight /></span> Either tap, or click and drag!</p>
+                                <p><span><MdComputer /> <AiOutlineArrowRight /></span> Either tap, or click and drag!</p>
                             </div>
                         </div>
                         <div className={styles.config}>

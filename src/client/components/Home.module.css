@@ -2,4 +2,9 @@
     margin-left: 2rem;
     margin-top: 4rem;
     font-size: 3vmin;
+    color: white;
+}
+
+.container a {
+    color: rgb(146, 195, 255);
 }
