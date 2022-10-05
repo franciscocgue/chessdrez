@@ -50,22 +50,28 @@ const Cell = ({ col, row, img }: Props) => {
             }}
             onMouseEnter={e => gameCtx.onCellEntered(row, col)}
         >
-            <div onDragStart={e => {
-                gameCtx.onDragStart(row, col);
-            }}
-                onClick={e => {
-                    // similar to onDragStart but mobile device
-                    console.log('inner div clicked')
+            <div className={styles['cell-content']}>
+                {col === 1 && <span className={styles['cell-row']}>{row}</span>}
+                {row === 8 && <div className={styles['cell-col']}>{String.fromCharCode(96 + col)}</div>}
+                <div onDragStart={e => {
                     gameCtx.onDragStart(row, col);
                 }}
-                draggable
-                className={`${styles['draggable']} ${styles['icon']}`}
-            // src={img} 
-            // width={'95%'}
-            >
-                {img}
-                {/* {row},{col}
+                    onClick={e => {
+                        // similar to onDragStart but mobile device
+                        console.log('inner div clicked')
+                        gameCtx.onDragStart(row, col);
+                    }}
+                    draggable
+                    className={`${styles['draggable']} ${styles['icon']}`}
+                // src={img} 
+                // width={'95%'}
+                >
+
+                    {img}
+
+                    {/* {row},{col}
             {piece} */}
+                </div>
             </div>
         </div>
     )
