@@ -24,8 +24,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, './src/client/template.html'),
-            title: 'My Application',
+            title: 'Chessdrez',
             filename: 'index.html',
+            favicon: "./src/client/assets/icon_chess.ico"
         }),
         new CleanWebpackPlugin(),
     ],

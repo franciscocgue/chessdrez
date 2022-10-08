@@ -19,6 +19,7 @@ module.exports = {
             template: path.resolve(__dirname, './src/client/template.html'),
             title: 'My Application',
             filename: 'index.html',
+            favicon: "./src/client/assets/icon_chess.ico"
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
