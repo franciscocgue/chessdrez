@@ -12,6 +12,12 @@
     justify-content: flex-start;
 }
 
+.container .logo {
+    height: 100%;
+    margin: auto 3rem auto auto;
+
+}
+
 .container div {
     list-style-type: none;
     margin: auto 2rem;
@@ -24,8 +30,12 @@
 }
 
 .container a {
+    display: inline-block;
     align-self: center;
     height: 100%;
+    text-decoration: none;
+    color: white;
+    outline: none;
 }
 
 .active {
