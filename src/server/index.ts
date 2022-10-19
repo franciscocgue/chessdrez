@@ -3,12 +3,13 @@ import { Application } from "express";
 const express = require('express');
 const path = require('path');
 const routes = require('./routes');
-const cors = require('cors')
+const cors = require('cors');
+const { Server } = require('socket.io');
 
 const app = express() as Application;
 const port = process.env.PORT || 8080;
-const dist_dir = path.resolve(__dirname, '../../dist')
-const html_file = path.resolve(dist_dir, 'index.html')
+const dist_dir = path.resolve(__dirname, '../../dist');
+const html_file = path.resolve(dist_dir, 'index.html');
 
 console.log(dist_dir)
 
@@ -34,6 +35,21 @@ app.get('*', (req, res) => {
     res.sendFile(html_file)
 })
 
-app.listen(port, () => {
+// create Http Server
+const server = app.listen(port, () => {
     console.log('#####\nServer started on port ' + port.toString() + '\n#####');
+});
+
+const io = new Server(server)
+
+io.on('connection', (socket: any) => {
+    console.log('a user connected');
+    
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+
+    socket.on('move', (payload : string) => {
+        console.log('move: ' + payload);
+    })
 });

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import Board from '../components/Board';
 import EatenOnes from '../components/EatenOnes';
 import GameContext from '../store/game-context';
@@ -11,6 +12,8 @@ import { IoMdOptions } from 'react-icons/io';
 import { MdHelpOutline } from 'react-icons/md';
 import { AiOutlineArrowRight } from 'react-icons/ai';
 
+import { io } from "socket.io-client";
+const socket = io();
 
 import styles from './Game.module.css'
 
@@ -28,6 +31,15 @@ const Game = () => {
     const [showConfig, setShowConfig] = useState(true);
     const gameCtx = useContext(GameContext);
 
+    const { gameid } = useParams();
+
+    console.log('gameid', gameid)
+
+    useEffect(() => {
+
+
+
+    }, [])
 
     useEffect(() => {
         setPlayTime(0);

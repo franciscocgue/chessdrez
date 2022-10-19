@@ -12,6 +12,16 @@ module.exports = {
         compress: true,
         hot: true,
         port: 3000,
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8080',
+                pathRewrite: { '^/api': '' } 
+            },
+            '/socket.io': {
+                target: 'http://localhost:8080',
+                ws: true,
+            }
+        },
     },
     entry: {
         main: path.resolve(__dirname, './src/client/index.tsx'),
