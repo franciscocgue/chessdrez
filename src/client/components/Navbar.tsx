@@ -21,7 +21,7 @@ const Navbar = () => {
                 <div>Home</div>
             </NavLink>
             <NavLink
-                to={'/chess'}
+                to={'/chess/game01'}
                 className={({ isActive }) =>
                     (isActive ? styles.active : "")}
                 style={{ color: 'white', textDecoration: 'none' }}

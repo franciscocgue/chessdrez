@@ -33,13 +33,13 @@ const Game = () => {
 
     const { gameid } = useParams();
 
-    console.log('gameid', gameid)
+    // console.log('gameid', gameid)
 
-    useEffect(() => {
+    // useEffect(() => {
 
 
 
-    }, [])
+    // }, [])
 
     useEffect(() => {
         setPlayTime(0);

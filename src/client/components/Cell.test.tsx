@@ -10,6 +10,7 @@ it('shows possible moves when pawn cell 78 hovered', () => {
             img={peonwhite}
             row={7}
             col={8}
+            color={'white'}
         />
     );
     let tree = component.toJSON();

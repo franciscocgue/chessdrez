@@ -33,13 +33,33 @@
     box-shadow: 0 0 0 100px rgba(255, 165, 0, 1) inset;
 }
 
+.king-checked {
+    box-shadow: 0 0 0 100px rgb(255, 0, 0) inset;
+}
 
-.icon {
+.checked-by {
+    box-shadow: 0 0 0 100px rgb(0, 68, 255) inset;
+}
+
+.icon-white {
     margin: auto;
     display: block;
     /* @TODO: change 'font-size' with media query if board is 100% of width*/
     font-size: 4vw; 
-    font-weight: 500;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    height: 100%;
+}
+
+.icon-black {
+    margin: auto;
+    display: block;
+    /* @TODO: change 'font-size' with media query if board is 100% of width*/
+    font-size: 4vw; 
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;

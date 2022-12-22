@@ -63,6 +63,7 @@ const Board = () => {
                         ]}
                         row={row}
                         col={col}
+                        color={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']}
                         // color={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']}
                     />
                 )

@@ -215,9 +215,42 @@ const possibleMoves = (row: number, col: number, board: BoardType) => {
     return moves;
 }
 
+const isCheck = (board: BoardType, color: 'white' | 'black') => {
+    // check if there is check to <color> king
+
+    const boardCopy = { ...board };
+    const opposite = color === 'white' ? 'black' : 'white'
+    let kingPos = '';
+    try {
+        kingPos = Object.keys(boardCopy).filter(idx => boardCopy[idx].color === color && boardCopy[idx].piece === 'rey')[0];
+    } catch (err) {
+        console.error(`No king for ${color} player`)
+        return
+    }
+    // Loop opposite color to see if king checked
+    for (let idx in boardCopy) {
+        if (boardCopy[idx].color === opposite) {
+            const { row, col } = getRowCol(idx);
+            if (possibleMoves(row, col, boardCopy).includes(kingPos)) {
+                return {
+                    isChecked: true,
+                    checkedKingPos: kingPos,
+                    checkerPos: idx,
+                }
+            }
+        }
+    }
+    return {
+        isChecked: false,
+        checkedKingPos: null,
+        checkerPos: null,
+    }
+}
+
 
 export {
     possibleMoves,
     getCoords,
     getRowCol,
+    isCheck,
 };
