@@ -3,14 +3,6 @@ import { useParams } from 'react-router-dom';
 import Board from '../components/Board';
 import EatenOnes from '../components/EatenOnes';
 import GameContext from '../store/game-context';
-import { ImMoveDown } from 'react-icons/im';
-import { GoDeviceMobile } from 'react-icons/go';
-import { MdComputer } from 'react-icons/md';
-import { MdOutlineExpandLess } from 'react-icons/md';
-import { MdOutlineExpandMore } from 'react-icons/md';
-import { IoMdOptions } from 'react-icons/io';
-import { MdHelpOutline } from 'react-icons/md';
-import { AiOutlineArrowRight } from 'react-icons/ai';
 
 import { io } from "socket.io-client";
 const socket = io();
@@ -28,7 +20,6 @@ const secondsToInterval = (seconds: number) => {
 const Game = () => {
 
     const [playTime, setPlayTime] = useState(0);
-    const [showConfig, setShowConfig] = useState(true);
     const gameCtx = useContext(GameContext);
 
     const { gameid } = useParams();
@@ -73,25 +64,7 @@ const Game = () => {
                 <Board />
             </div>
             <div className={styles.info}>
-                <div className={styles['info-config']}>
-                    <button onClick={() => { setShowConfig(prev => !prev) }} className={styles['config-btn']}>{showConfig ? <MdOutlineExpandMore /> : <MdOutlineExpandLess />} Settings</button>
-                    <div className={showConfig ? '' : styles['hide']}>
-                        <div className={styles['help']}>
-                            <div className={styles['icon']}><MdHelpOutline /></div>
-                            <div className={styles['help-instructions']}>
-                                <p><span><GoDeviceMobile /> <AiOutlineArrowRight /></span> Tap once to select piece, tap again to move!</p>
-                                <p><span><MdComputer /> <AiOutlineArrowRight /></span> Either tap, or click and drag!</p>
-                            </div>
-                        </div>
-                        <div className={styles.config}>
-                            <div className={styles['icon']}><IoMdOptions /></div>
-                            <div className={styles['config-options']}>
-                                <label className={styles['label-help']} title='Highlight possible moves' ><input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} /> Show legal moves</label>
-                                <label className={styles['label-help']} title='Highlight possible moves' ><input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleLastMove()} /> Show last move</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div className={styles['info-status']}>
                     <div className={styles['info-player']}>
                         <div className={styles.nowplaying}><div className={`${styles['white']}`}><p className={styles.player}>{'Player white'}</p></div><p key={'white'} title="Current move's time" className={`${gameCtx.playing === 'white' ? styles.timer : styles.hide}`}>{secondsToInterval(playTime)}</p></div>

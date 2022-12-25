@@ -7,20 +7,20 @@ import Cell from './Cell';
 
 const icon = {
     'white': {
-        rey: '♔',
-        reina: '♕',
-        torre: '♖',
-        alfil: '♗',
-        caballo: '♘',
-        peon: '♙',
+        rey: 'reywhite',
+        reina: 'reinawhite',
+        torre: 'torrewhite',
+        alfil: 'alfilwhite',
+        caballo: 'caballowhite',
+        peon: 'peonwhite',
     },
     'black': {
-        rey: '♚',
-        reina: '♛',
-        torre: '♜',
-        alfil: '♝',
-        caballo: '♞',
-        peon: '♟',
+        rey: 'reyblack',
+        reina: 'reinablack',
+        torre: 'torreblack',
+        alfil: 'alfilblack',
+        caballo: 'caballoblack',
+        peon: 'peonblack',
     },
     null: {
         null: '?'
@@ -39,7 +39,7 @@ const EatenOnes = ({ color }: Props) => {
     for (let ii = 0; ii > gameCtx.eaten.filter(item => item.color === color).length - 16; ii--) {
         emptyCells.push({ piece: null, color: null });
     }
-    let component = gameCtx.eaten.filter(item => item.color === color).concat(emptyCells).map((item, idx) => <Eaten key={item.piece ? idx : idx + 16} idx={item.piece ? idx : idx + 16} icon={icon[item.color][item.piece]} />);
+    let component = gameCtx.eaten.filter(item => item.color === color).concat(emptyCells).map((item, idx) => <Eaten key={item.piece ? idx : idx + 16} idx={item.piece ? idx : idx + 16} piece={item.piece} color={item.color} family={gameCtx.familyPrefix} />);
 
     return (
         <div className={styles.container}>

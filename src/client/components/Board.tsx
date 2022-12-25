@@ -58,9 +58,10 @@ const Board = () => {
                         key={row.toString() + col.toString()}
                         // board={gameCtx.board}
                         // piece={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['piece']}
-                        img={pieceImages[
-                            gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['piece'] + gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']
-                        ]}
+                        // img={pieceImages[
+                        //     gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['piece'] + gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']
+                        // ]}
+                        piece={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['piece']}
                         row={row}
                         col={col}
                         color={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']}

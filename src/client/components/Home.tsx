@@ -1,12 +1,29 @@
 import React from 'react';
 import styles from './Home.module.css';
 
+import aiGame from '../assets/ai-game.png'
+import p2pGame from '../assets/p2p-game.png'
+import Card from './ui/Card';
+
 const Home = () => {
-    
+
     return (
         <div className={styles.container}>
-            <p>Oops this is not yet finished 😳 (but you can check the Chess section!)</p>
-            <p>Wanna check the <b>Github repo</b>? <a target='_blank' href='https://github.com/franciscocgue/chessdrez'>Chessdrez</a></p>
+            <div className={styles.options}>
+                <Card
+                    key={1}
+                    image={aiGame}
+                    title={'Beat the Machine'}
+                    note={'(we are working on it!)'}
+                    disabled={true}
+                ></Card>
+                <Card
+                    key={2}
+                    image={p2pGame}
+                    title={'Device as Board'}
+                    navToPath={'/chess/game01'}
+                ></Card>
+            </div>
         </div>
     )
 }

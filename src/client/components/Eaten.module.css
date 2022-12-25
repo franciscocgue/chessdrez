@@ -27,3 +27,22 @@
     font-weight: 500;
     color: rgb(198, 198, 198);
 }
+
+.icon-img-peon {
+    height:55%;
+}
+.icon-img-caballo {
+    height: 65%;
+}
+.icon-img-torre {
+    height: 65%;
+}
+.icon-img-alfil {
+    height: 75%;
+}
+.icon-img-reina {
+    height: 85%;
+}
+.icon-img-rey {
+    height: 85%;
+}

@@ -1,0 +1,156 @@
+.container {
+    margin-left: 2rem;
+    margin-top: 1rem;
+    color: white;
+    /* display: flex;
+    flex-direction: column; */
+}
+
+
+@media (max-width:1000px) {
+    .container p, .container span {
+        font-size: 3.5vmin;
+    }
+}
+
+.container a {
+    color: rgb(146, 195, 255);
+}
+
+.container-families {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: row;
+    padding: 1rem;
+}
+
+.info-config {
+    display: flex;
+    flex-direction: column;
+    /* margin: 1rem 1rem 2rem 0; */
+}
+
+.config-btn {
+    margin: 0.5rem 2rem 1rem 1rem;
+    padding: 0.7rem 2rem 0.5rem 1rem;
+    width: fit-content;
+    /* font-weight: bold; */
+    background-color: white;
+    outline: none;
+    border: 1px solid rgb(196, 196, 196);
+    background-color: rgb(95, 95, 95);
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    /* box-shadow: 2px 2px rgb(169, 169, 169) */
+}
+
+.hide {
+    display: none;
+}
+
+.info-status {
+    display: flex;
+    flex-direction: column;
+}
+
+.help {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    color: white;
+}
+
+.config {
+    padding: 0.5rem 1rem 1rem 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: white;
+}
+
+.icon {
+    font-size: 5vmin;
+}
+
+.config-options {
+    border-left: 2px solid rgb(189, 189, 189);
+    margin-left: 1rem;
+    padding-left: 1rem;
+}
+
+.config-options input {
+    margin-right: 1rem;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.checkbox {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    width: fit-content;
+    font-size: 2.7vmin;
+    /* font-weight: bold; */
+    background-color: white;
+    outline: none;
+    /* border: 1px solid rgb(196, 196, 196); */
+    border: none;
+    /* background-color: rgb(95, 95, 95); */
+    background-color: transparent;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.help {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem 1rem 0.5rem 1rem;
+}
+
+.help-instructions {
+    display: flex;
+    flex-direction: column;
+    /* font-size: 2.7vmin; */
+    width: fit-content; 
+    border-left: 2px solid rgb(189, 189, 189);
+    margin-left: 1rem;
+    padding-left: 1rem;
+}
+
+.help p {
+    /* color: rgb(198, 198, 198); */
+    padding: 0;
+    margin: 0.5rem 0;
+}
+
+.help p span {
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    width: fit-content;
+    /* font-weight: bold; */
+    background-color: white;
+    outline: none;
+    /* border: 1px solid rgb(196, 196, 196); */
+    border: none;
+    /* background-color: rgb(95, 95, 95); */
+    background-color: transparent;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.label-help {
+    display: flex;
+    width: fit-content;
+    outline: none;
+    margin: 0.7rem 0;
+    color: rgb(198, 198, 198);
+}
+
+.label-help input {
+    outline: none;
+}

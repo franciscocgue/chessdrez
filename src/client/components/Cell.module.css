@@ -98,6 +98,25 @@
     bottom: 0;
 }
 
+.icon-img-peon {
+    height:55%;
+}
+.icon-img-caballo {
+    height: 65%;
+}
+.icon-img-torre {
+    height: 65%;
+}
+.icon-img-alfil {
+    height: 75%;
+}
+.icon-img-reina {
+    height: 85%;
+}
+.icon-img-rey {
+    height: 85%;
+}
+
 @media (max-width: 1000px) {
     .icon{
         font-size: 7vmin; 

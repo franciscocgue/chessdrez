@@ -6,6 +6,7 @@
     margin: 0;
     z-index: 10;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     height: 8vmin;
     /* if height changes, change Board.module.css */
@@ -14,15 +15,14 @@
 
 .container .logo {
     height: 100%;
-    margin: auto 3rem auto auto;
-
+    margin: auto 2rem auto auto;
 }
 
 .container div {
     list-style-type: none;
-    margin: auto 2rem;
+    margin: auto 0.5rem;
     cursor: pointer;
-    font-size: 4vmin;
+    font-size: min(3.5vmin, 1.5rem);
     height: 100%;
     display: flex;
     justify-content: center;

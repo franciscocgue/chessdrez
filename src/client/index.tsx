@@ -13,6 +13,8 @@ import './styles.css';
 import Root from './pages/Root';
 import Home from './components/Home';
 import Game from './components/Game';
+import About from './components/About';
+import Settings from './components/Settings';
 
 const router = createBrowserRouter([
     {
@@ -21,8 +23,16 @@ const router = createBrowserRouter([
         errorElement: <div>Opps error</div>,
         children: [
             {
-                path: '/home',
+                path: '/',
                 element: <Home />,
+            },
+            {
+                path: '/about',
+                element: <About />,
+            },
+            {
+                path: '/config',
+                element: <Settings />,
             },
             {
                 path: '/chess/:gameid',

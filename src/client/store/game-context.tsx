@@ -19,6 +19,7 @@ interface GameContextType {
     dragging: string | null, // piece dragged (its cell coordinates)
     draggingOver: string | null, // cell coordinates over which piece is dragged
     playing: 'white' | 'black',
+    familyPrefix: string, // piece image style: f1_, f2_
     shadowEnabled: true | false,
     showLastMove: true | false,
     shadows: string[],
@@ -37,6 +38,7 @@ interface GameContextType {
     onCellEntered: (row: number, col: number) => void,
     onToggleShadow: () => void,
     onToggleLastMove: () => void,
+    onFamilyChange: (prefix: string) => void,
 }
 
 const GameContext = React.createContext<GameContextType>({
@@ -44,6 +46,7 @@ const GameContext = React.createContext<GameContextType>({
     dragging: null,
     draggingOver: null,
     playing: 'white',
+    familyPrefix: 'f2_',
     shadowEnabled: false,
     showLastMove: false,
     shadows: [],
@@ -62,6 +65,7 @@ const GameContext = React.createContext<GameContextType>({
     onCellEntered: (row: number, col: number) => { },
     onToggleShadow: () => { },
     onToggleLastMove: () => { },
+    onFamilyChange: (prefix: string) => { },
 });
 
 interface PropsType {
@@ -72,6 +76,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
 
     const [board, setBoard] = useState(boardInitial)
     const [playing, setPlaying] = useState<'white' | 'black'>('white')
+    const [familyPrefix, setFamilyPrefix] = useState<string>('f1_')
     const [dragging, setDragging] = useState(null) // currently dragged piece coordinates
     const [draggingOver, setDraggingOver] = useState(null) // draggind-over coordinates
     const [history, setHistory] = useState([]);
@@ -222,6 +227,10 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
         }
     }
 
+    const onFamilyChangeHandler = (prefix: string) => {
+        setFamilyPrefix(prefix)
+    }
+
     const onDropOutsideBoardHandler = () => {
         setDragging(null);
         setDraggingOver(null);
@@ -245,6 +254,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 dragging: dragging,
                 draggingOver: draggingOver,
                 playing: playing,
+                familyPrefix: familyPrefix,
                 shadowEnabled: shadowEnabled,
                 showLastMove: showLastMove,
                 shadows: shadows,
@@ -259,6 +269,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 onCellEntered: onCellEnteredHandler,
                 onToggleShadow: onToggleShadowHandler,
                 onToggleLastMove: onToggleLastMoveHandler,
+                onFamilyChange: onFamilyChangeHandler,
             }}>
             {children}
         </GameContext.Provider>

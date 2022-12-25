@@ -7,10 +7,11 @@ it('shows possible moves when pawn cell 78 hovered', () => {
     const component = renderer.create(
         <Cell
             key={'78'}
-            img={peonwhite}
+            // img={peonwhite}
             row={7}
             col={8}
             color={'white'}
+            piece={'peon'}
         />
     );
     let tree = component.toJSON();

@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.container-left {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.container-right {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.icon-left {
+    margin-right: 1rem;
+    min-width: 6vmin;
+    width: 6vmin;
+}
+
+.icon-right {
+    margin-left: 1rem;
+    min-width: 6vmin;
+    width: 6vmin;
+}
+
+.icon-left img,
+.icon-right img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+}
+
+.text {
+    display: flex;
+    align-items: center;
+    border: 1px solid grey;
+    min-height: 33px;
+    padding: 5px 10px 5px 10px;
+    border-radius: 7px;
+    background-color: rgb(228, 228, 228);
+    color: black;
+    font-family: 'Comic Neue', cursive;
+}
+
+.container-left a,
+.container-right a {
+    color: rgb(0, 72, 160);
+    font-weight: 600;
+    text-decoration: none;
+}

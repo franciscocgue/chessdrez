@@ -8,11 +8,11 @@ interface Props {
     key: string,
     col: number, // 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
     row: number, // 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
-    img: string,
+    piece: string,
     color: 'white' | 'black'
 }
 
-const Cell = ({ col, row, img, color }: Props) => {
+const Cell = ({ col, row, piece, color }: Props) => {
 
     const gameCtx = useContext(GameContext);
 
@@ -49,11 +49,7 @@ const Cell = ({ col, row, img, color }: Props) => {
 
     return (
         <div
-            className={`${styles[cellColor]} 
-            ${styles.cell} 
-            ${extraClasses}    
-        `}
-
+            className={`${styles[cellColor]} ${styles.cell} ${extraClasses}`}
             onDragEnter={e => {
                 e.stopPropagation()
                 gameCtx.onDragEnter(row, col);
@@ -94,8 +90,8 @@ const Cell = ({ col, row, img, color }: Props) => {
                 // src={img} 
                 // width={'95%'}
                 >
-
-                    {img}
+                    {piece && <img className={styles['icon-img-' + piece]} src={`https://chessdrez.s3.eu-central-1.amazonaws.com/pieces/${gameCtx.familyPrefix}${piece}${color}.png`} />}
+                    {/* {img} */}
 
                     {/* {row},{col}
             {piece} */}

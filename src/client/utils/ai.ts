@@ -4,7 +4,7 @@ import { ImMoveDown } from "react-icons/im";
 
 // Start ai-player
 
-const maxDepth = 2;
+const maxDepth = 1;
 
 // Evaluate a given board status
 const evaluate = (board: BoardType, playing: 'white' | 'black') => {
