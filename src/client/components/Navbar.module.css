@@ -20,7 +20,7 @@
 
 .container div {
     list-style-type: none;
-    margin: auto 0.5rem;
+    margin: auto 2rem;
     cursor: pointer;
     font-size: min(3.5vmin, 1.5rem);
     height: 100%;
@@ -41,4 +41,10 @@
 .active {
     /* font-weight: bold; */
     background-color: rgb(95, 95, 95);
+}
+
+@media (max-width:800px) {
+    .container div {
+        margin: auto 0.5rem;
+    }
 }

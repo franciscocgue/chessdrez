@@ -19,7 +19,7 @@
 }
 
 .info {
-    /* padding: 1rem; */
+    padding: 1rem;
     width: 40%;
     /* border: 1px solid blue; */
     display: flex;
@@ -33,6 +33,73 @@
     width: calc(100% - 2rem);
 }
 
+.history {
+    margin: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: white;
+    width: calc(100% - 2rem);
+}
+
+.history-btns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 0 0.5rem 0;
+    padding: 0 0 0 0;
+    /* justify-content: center; */
+}
+
+.history-btn {
+    background-color: rgb(91, 91, 91);
+    border: 1px solid grey;
+    color: white;
+    outline: none;
+    border-radius: 7px;
+    padding: 0 0.5rem;
+    margin: 0.5rem;
+    /* margin-bottom: 0.5rem; */
+    cursor: pointer;
+}
+
+/* show last N moves (rows) */
+/* 0.5rem + (N+1)*1rem + N*4px + 1rem */
+.history-last-1 {
+    max-height: calc(1rem + 4px);
+    overflow-y: scroll;
+}
+.history-last-3 {
+    max-height: calc(3rem + 12px);
+    overflow-y: scroll;
+}
+.history-last-10 {
+    max-height: calc(10rem + 40px);
+    overflow-y: scroll;
+}
+
+.history-row {
+    margin: 0 0 2px 0;
+    font-family: monospace;
+}
+
+.history-icon {
+    display: inline-block;
+    width: 3rem;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.black-bgnd {
+    background-color: black;
+    color: white;
+}
+
+.white-bgnd {
+    background-color: white;
+    color: black;
+}
+
 .nowplaying {
     display: flex;
     gap: 13px;
@@ -42,7 +109,7 @@
 
 .nowplaying div {
     width: 250px;
-    height: 45px;
+    height: 100%;
     border-radius: 5px;
     text-align: center;
 }
@@ -70,12 +137,13 @@
     font-size: 19pt;
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 .timer {
     font-family: 'Koulen', cursive;
     width: 100px;
-    height: 45px;
+    height: 100%;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -96,6 +164,18 @@
     /* 66% {width: 60px; transform: scale(0.5);}
     100%  {width: 60px; transform: scale(1);} */
   }
+
+@media (min-width: 1000px) {
+    .info {
+        max-height: calc(100vh - 8vmin);
+        overflow-y: scroll;
+    }
+
+    /* .history {
+        max-height: calc(45vh - 8vmin);
+        overflow-y: scroll;
+    } */
+}
 
 @media (max-width: 1000px) {
     .board {
@@ -119,8 +199,12 @@
         font-size: 5vmin;
     }
 
+    .nowplaying {
+        height: calc(9vmin);
+    }
+
     .nowplaying div {
         width: 350px;
-        height: calc(9vmin);
+        height: 100%;
     }
 }

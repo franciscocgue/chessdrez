@@ -176,6 +176,10 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
         }
     }, [board, playing])
 
+    useEffect(() => {
+        console.log(history)
+    }, [history])
+
     // king checked
     useEffect(() => {
         const checkW = isCheck(board, 'white');

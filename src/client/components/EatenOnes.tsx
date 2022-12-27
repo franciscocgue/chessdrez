@@ -35,11 +35,11 @@ const EatenOnes = ({ color }: Props) => {
 
     const gameCtx = useContext(GameContext);
 
-    let emptyCells = [];
-    for (let ii = 0; ii > gameCtx.eaten.filter(item => item.color === color).length - 16; ii--) {
-        emptyCells.push({ piece: null, color: null });
-    }
-    let component = gameCtx.eaten.filter(item => item.color === color).concat(emptyCells).map((item, idx) => <Eaten key={item.piece ? idx : idx + 16} idx={item.piece ? idx : idx + 16} piece={item.piece} color={item.color} family={gameCtx.familyPrefix} />);
+    // let emptyCells = [];
+    // for (let ii = 0; ii > gameCtx.eaten.filter(item => item.color === color).length - 16; ii--) {
+    //     emptyCells.push({ piece: null, color: null });
+    // }
+    let component = gameCtx.eaten.filter(item => item.color === color).map((item, idx) => <Eaten key={item.piece ? idx : idx + 16} idx={item.piece ? idx : idx + 16} piece={item.piece} color={item.color} family={gameCtx.familyPrefix} />);
 
     return (
         <div className={styles.container}>
