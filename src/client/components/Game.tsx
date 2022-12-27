@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Board from '../components/Board';
 import EatenOnes from '../components/EatenOnes';
 import GameContext from '../store/game-context';
+import { BiRightArrowAlt } from 'react-icons/bi'
 
 import { io } from "socket.io-client";
 const socket = io();
@@ -62,7 +63,7 @@ const Game = () => {
             `${styles['history-icon']} ${styles['white-bgnd']}`
         // return <p className={styles['history-row']}>{`${gameCtx.history.length - ii} - <span className={styles['history-icon']}>{icons[idx]}</span>: aa 🠦 bb`}</p>
 
-        return <p className={styles['history-row']}><span style={{display: 'inline-block', width:'2rem'}}>{gameCtx.history.length - ii}.</span> <span className={iconClass}>{icon}</span> {from} 🠦 {to}</p>
+        return <p className={styles['history-row']}><span style={{ display: 'inline-block', width: '2rem' }}>{gameCtx.history.length - ii}.</span> <span className={iconClass}>{icon}</span> {from} <BiRightArrowAlt /> {to}</p>
 
     });
 
