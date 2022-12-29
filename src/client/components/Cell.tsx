@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import GameContext from '../store/game-context';
 import { getCoords } from '../utils/logic';
 

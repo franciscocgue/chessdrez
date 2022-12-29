@@ -9,9 +9,10 @@ interface Props {
     disabled?: true | false,
     note?: string,
     navToPath?: string,
+    onClickAction?: () => void,
 }
 
-const Card = ({ title, image, disabled, note, navToPath }: Props) => {
+const Card = ({ title, image, disabled, note, navToPath, onClickAction }: Props) => {
 
     const [scalingclass, setScalingclass] = useState('');
 
@@ -20,12 +21,15 @@ const Card = ({ title, image, disabled, note, navToPath }: Props) => {
     return (
         <div onClick={e => {
             if (navToPath) {
-                navigate('/chess/game01')
+                if (onClickAction) {
+                    onClickAction();
+                };
+                navigate('/chess/game01');
             }
         }} className={styles.container}>
             <div className={styles.title}>
                 <h2 className={`${disabled ? styles['disabled-text'] : ''}`}>{title}</h2>
-                {note && <h4 className={`${disabled ? styles['disabled-text'] : ''}`}><FaTools />{' '}{note}{' '}<FaTools /></h4>}
+                {note && <h4 className={`${disabled ? styles['disabled-text'] : ''}`}>{' '}{note}{' '}</h4>}
             </div>
             <div
                 className={`${styles.content} ${scalingclass}`}

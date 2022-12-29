@@ -46,6 +46,7 @@ interface GameContextType {
     onToggleLastMove: () => void,
     onFamilyChange: (prefix: string) => void,
     onColorChange: (category: string, color: string) => void,
+    onReset: () => void,
 }
 
 const GameContext = React.createContext<GameContextType>({
@@ -80,6 +81,7 @@ const GameContext = React.createContext<GameContextType>({
     onToggleLastMove: () => { },
     onFamilyChange: (prefix: string) => { },
     onColorChange: (category: string, color: string) => { },
+    onReset: () => {},
 });
 
 interface PropsType {
@@ -109,6 +111,20 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
         checkedKingPos: null,
         checkerPos: null,
     })
+
+    const onResetHandle = () => {
+        setBoard(boardInitial);
+        setPlaying('white');
+        setDragging(null);
+        setDraggingOver(null);
+        setHistory([]);
+        setEaten([]);
+        setCheck({
+            isCheck: false,
+            checkedKingPos: null,
+            checkerPos: null,
+        });
+    }
 
     // useEffect(() => {
     //     console.log('board')
@@ -310,6 +326,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 onToggleLastMove: onToggleLastMoveHandler,
                 onFamilyChange: onFamilyChangeHandler,
                 onColorChange: onColorChangeHandler,
+                onReset: onResetHandle,
             }}>
             {children}
         </GameContext.Provider>
