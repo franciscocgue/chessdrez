@@ -61,9 +61,14 @@ const Game = () => {
         const to = item.pieceTo.row + colDic[item.pieceTo.col as keyof typeof colDic]
         const iconClass = item.pieceFrom.color === 'black' ? `${styles['history-icon']} ${styles['black-bgnd']}` :
             `${styles['history-icon']} ${styles['white-bgnd']}`
-        // return <p className={styles['history-row']}>{`${gameCtx.history.length - ii} - <span className={styles['history-icon']}>{icons[idx]}</span>: aa 🠦 bb`}</p>
+        let captured = '';
+        if ('eaten' in item) {
+            const idxCap = item.eaten.piece + item.eaten.color as keyof typeof icons;
+            const iconCap = icons[idxCap];
+            captured = `${iconCap}`
+        }
 
-        return <p className={styles['history-row']}><span style={{ display: 'inline-block', width: '2rem' }}>{gameCtx.history.length - ii}.</span> <span className={iconClass}>{icon}</span> {from} <BiRightArrowAlt /> {to}</p>
+            return <p className={styles['history-row']}><span style={{ display: 'inline-block', width: '2rem' }}>{gameCtx.history.length - ii}.</span> <span className={iconClass}>{icon}</span> {from} <BiRightArrowAlt /> {to} (<span style={{color:'red'}}>{captured}</span>)</p>
 
     });
 

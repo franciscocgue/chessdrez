@@ -153,17 +153,10 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                             return curr;
                         })
                     }
-                    // update board
-                    setBoard(prev => {
-                        const newBoard = { ...prev };
-                        newBoard[draggingOver] = { piece: prev[dragging].piece, color: prev[dragging].color }
-                        newBoard[dragging] = { piece: null, color: null }
-                        return newBoard;
-                    })
                     // Update history
                     setHistory((prev) => {
                         const prevHistory = [...prev];
-                        prevHistory.push({
+                        const newMove: Move = {
                             pieceFrom: {
                                 row: draggingRowCol.row,
                                 col: draggingRowCol.col,
@@ -176,8 +169,23 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                                 piece: board[dragging].piece,
                                 color: board[dragging].color,
                             },
-                        })
+                        }
+                        // if eaten piece, add to history
+                        if (board[draggingOver].piece !== null) {
+                            newMove.eaten = {
+                                piece: board[draggingOver].piece,
+                                color: board[draggingOver].color,
+                            };
+                        }
+                        prevHistory.push(newMove)
                         return prevHistory;
+                    })
+                    // update board
+                    setBoard(prev => {
+                        const newBoard = { ...prev };
+                        newBoard[draggingOver] = { piece: prev[dragging].piece, color: prev[dragging].color }
+                        newBoard[dragging] = { piece: null, color: null }
+                        return newBoard;
                     })
                     // Switch player
                     setPlaying(prev => prev === 'white' ? 'black' : 'white')

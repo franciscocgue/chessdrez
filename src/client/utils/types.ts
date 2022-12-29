@@ -12,7 +12,8 @@ interface Cell {
 
 interface Move {
     pieceFrom: Piece,
-    pieceTo: Piece 
+    pieceTo: Piece,
+    eaten?: Cell,
 };
 
 interface BoardType {
