@@ -19,19 +19,21 @@ const Cell = ({ col, row, piece, color }: Props) => {
     const cellColor = (row % 2 && col % 2) || (!(row % 2) && !(col % 2)) ? 'black' : 'white';
 
     // Cell extra classes:
-    let extraClasses = ' ';
+    interface styleType {
+        [className: string]: string
+    }
+
+    let stylesColor: styleType;
+    stylesColor = { backgroundColor: cellColor == 'black' ? gameCtx.colors.black : gameCtx.colors.white };
     if (gameCtx.shadowEnabled && gameCtx.shadows.includes(getCoords(row, col))) {
         // Shadow
-        extraClasses += styles.shadow;
-        extraClasses += ' ';
+        stylesColor.boxShadow = `0 0 0 100px ${gameCtx.colors.legal} inset`;
     } else if (gameCtx.check.isCheck && gameCtx.check.checkedKingPos === getCoords(row, col)) {
         // checked king
-        extraClasses += styles['king-checked'];
-        extraClasses += ' ';
+        stylesColor.boxShadow = '0 0 0 100px rgb(255, 0, 0) inset';
     } else if (gameCtx.check.isCheck && gameCtx.check.checkerPos === getCoords(row, col)) {
         // checked king
-        extraClasses += styles['checked-by'];
-        extraClasses += ' ';
+        stylesColor.boxShadow = '0 0 0 100px rgb(0, 68, 255) inset';
     } else if (
         gameCtx.showLastMove
         && gameCtx.history.length > 0
@@ -44,12 +46,13 @@ const Cell = ({ col, row, piece, color }: Props) => {
             ))
     ) {
         // Show last moves
-        extraClasses += styles['last-move'];
+        stylesColor.boxShadow = `0 0 0 100px ${gameCtx.colors.last} inset`;
     }
 
     return (
         <div
-            className={`${styles[cellColor]} ${styles.cell} ${extraClasses}`}
+            className={`${styles.cell}`}
+            style={stylesColor}
             onDragEnter={e => {
                 e.stopPropagation()
                 gameCtx.onDragEnter(row, col);

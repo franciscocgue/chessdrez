@@ -155,3 +155,18 @@
 .label-help input {
     outline: none;
 }
+
+.color-row {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.color-row-reset {
+    display: inline-block;
+    width: 2rem;
+    text-align: center;
+    cursor: pointer;
+}

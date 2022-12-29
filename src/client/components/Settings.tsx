@@ -14,6 +14,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai';
 import { FaChess } from 'react-icons/fa';
 import { ImCheckboxUnchecked } from 'react-icons/im';
 import { ImCheckboxChecked } from 'react-icons/im';
+import { BiReset } from 'react-icons/bi';
 
 const Settings = () => {
 
@@ -50,6 +51,46 @@ const Settings = () => {
                                     {gameCtx.showLastMove ? <ImCheckboxChecked /> : <ImCheckboxUnchecked />}
                                 </button>
                                 <span className={styles.pointer} onClick={e => { gameCtx.onToggleLastMove() }}>Display last move</span>
+                            </div>
+                            <div className={styles['color-row']}>
+                                <input
+                                    style={{ marginLeft: '1rem', backgroundColor: 'transparent', border: 'none', padding: '0', width: '3rem', height: '1.5rem' }}
+                                    type="color"
+                                    value={gameCtx.colors.white}
+                                    onChange={e => gameCtx.onColorChange('white', e.target.value)}
+                                />
+                                <span>White cells</span>
+                                <span className={styles['color-row-reset']} onClick={e => gameCtx.onColorChange('white', '#ffe4c4')}><BiReset /></span>
+                            </div>
+                            <div className={styles['color-row']}>
+                                <input
+                                    style={{ marginLeft: '1rem', backgroundColor: 'transparent', border: 'none', padding: '0', width: '3rem', height: '1.5rem' }}
+                                    type="color"
+                                    value={gameCtx.colors.black}
+                                    onChange={e => gameCtx.onColorChange('black', e.target.value)}
+                                />
+                                <span>Black cells</span>
+                                <span className={styles['color-row-reset']} onClick={e => gameCtx.onColorChange('black', '#498346')}><BiReset /></span>
+                            </div>
+                            <div className={styles['color-row']}>
+                                <input
+                                    style={{ marginLeft: '1rem', backgroundColor: 'transparent', border: 'none', padding: '0', width: '3rem', height: '1.5rem' }}
+                                    type="color"
+                                    value={gameCtx.colors.last}
+                                    onChange={e => gameCtx.onColorChange('last', e.target.value)}
+                                />
+                                <span>Last move</span>
+                                <span className={styles['color-row-reset']} onClick={e => gameCtx.onColorChange('last', '#7c9dff')}><BiReset /></span>
+                            </div>
+                            <div className={styles['color-row']}>
+                                <input
+                                    style={{ marginLeft: '1rem', backgroundColor: 'transparent', border: 'none', padding: '0', width: '3rem', height: '1.5rem' }}
+                                    type="color"
+                                    value={gameCtx.colors.legal}
+                                    onChange={e => gameCtx.onColorChange('legal', e.target.value)}
+                                />
+                                <span>Legal moves</span>
+                                <span className={styles['color-row-reset']} onClick={e => gameCtx.onColorChange('legal', '#ffa500')}><BiReset /></span>
                             </div>
                             {/* <label className={styles['label-help']} title='Highlight possible moves' ><input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleShadow()} /> Show legal moves</label> */}
                             {/* <label className={styles['label-help']} title='Highlight possible moves' ><input id='shadowToggle' name='shadowToggle' type={'checkbox'} onChange={() => gameCtx.onToggleLastMove()} /> Show last move</label> */}

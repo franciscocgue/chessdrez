@@ -25,6 +25,12 @@ interface GameContextType {
     shadows: string[],
     eaten: Cell[],
     history: Move[],
+    colors: {
+        white: string,
+        black: string,
+        legal: string,
+        last: string,
+    },
     check: {
         isCheck: true | false,
         checkedKingPos: null | string,
@@ -39,6 +45,7 @@ interface GameContextType {
     onToggleShadow: () => void,
     onToggleLastMove: () => void,
     onFamilyChange: (prefix: string) => void,
+    onColorChange: (category: string, color: string) => void,
 }
 
 const GameContext = React.createContext<GameContextType>({
@@ -52,6 +59,12 @@ const GameContext = React.createContext<GameContextType>({
     shadows: [],
     eaten: [],
     history: [],
+    colors: {
+        white: '#ffe4c4',
+        black: '#498346',
+        legal: '#ffa500',
+        last: '#7c9dff',
+    },
     check: {
         isCheck: false,
         checkedKingPos: null,
@@ -66,6 +79,7 @@ const GameContext = React.createContext<GameContextType>({
     onToggleShadow: () => { },
     onToggleLastMove: () => { },
     onFamilyChange: (prefix: string) => { },
+    onColorChange: (category: string, color: string) => { },
 });
 
 interface PropsType {
@@ -79,6 +93,12 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     const [familyPrefix, setFamilyPrefix] = useState<string>('f1_')
     const [dragging, setDragging] = useState(null) // currently dragged piece coordinates
     const [draggingOver, setDraggingOver] = useState(null) // draggind-over coordinates
+    const [colors, setColors] = useState({
+        white: '#ffe4c4',
+        black: '#498346',
+        legal: '#ffa500',
+        last: '#7c9dff',
+    });
     const [history, setHistory] = useState([]);
     const [shadowEnabled, setShadowEnabled] = useState(false)
     const [showLastMove, setShowLastMove] = useState(false)
@@ -251,6 +271,12 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
         setShowLastMove(!showLastMove);
     }
 
+    const onColorChangeHandler = (category: string, color: string) => {
+        setColors(prev => {
+            return ({ ...prev, [category]: color })
+        })
+    }
+
     return (
         <GameContext.Provider
             value={{
@@ -264,6 +290,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 shadows: shadows,
                 eaten: eaten,
                 history: history,
+                colors: colors,
                 check: check,
                 onUpdateBoard: onUpdateBoardHandler,
                 onDragStart: onDragStartHandler,
@@ -274,6 +301,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 onToggleShadow: onToggleShadowHandler,
                 onToggleLastMove: onToggleLastMoveHandler,
                 onFamilyChange: onFamilyChangeHandler,
+                onColorChange: onColorChangeHandler,
             }}>
             {children}
         </GameContext.Provider>

@@ -12,11 +12,11 @@
 }
 
 .white {
-    background-color: bisque;
+    background-color: #ffe4c4;
 }
 
 .black {
-    background-color: rgb(73, 131, 70);
+    background-color: #498346;
 }
 
 .cell:hover {
@@ -26,11 +26,11 @@
 }
 
 .last-move {
-    box-shadow: 0 0 0 100px rgb(124, 157, 255) inset;   
+    box-shadow: 0 0 0 100px #7c9dff inset;   
 }
 
 .shadow {
-    box-shadow: 0 0 0 100px rgba(255, 165, 0, 1) inset;
+    box-shadow: 0 0 0 100px #ffa500 inset;
 }
 
 .king-checked {
