@@ -4,7 +4,7 @@ import { ImMoveDown } from "react-icons/im";
 
 // Start ai-player
 
-const maxDepth = 1;
+const maxDepth = 2;
 const values = {
     peon: 100,
     alfil: 330,
