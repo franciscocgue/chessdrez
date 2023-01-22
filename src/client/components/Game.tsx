@@ -68,7 +68,7 @@ const Game = () => {
             captured = `${iconCap}`
         }
 
-            return <p className={styles['history-row']}><span style={{ display: 'inline-block', width: '2rem' }}>{gameCtx.history.length - ii}.</span> <span className={iconClass}>{icon}</span> {from} <BiRightArrowAlt /> {to} <span style={{color:'red'}}>{captured}</span></p>
+            return <p key={ii.toString()} className={styles['history-row']}><span style={{ display: 'inline-block', width: '2rem' }}>{gameCtx.history.length - ii}.</span> <span className={iconClass}>{icon}</span> {from} <BiRightArrowAlt /> {to} <span style={{color:'red'}}>{captured}</span></p>
 
     });
 

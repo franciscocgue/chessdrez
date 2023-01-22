@@ -13,9 +13,6 @@ const Pieces = ({ familyPrefix }: Props) => {
 
     const gameCtx = useContext(GameContext);
 
-    console.log(familyPrefix)
-    console.log(gameCtx.familyPrefix)
-
     return <div className={styles.container}>
         <button
             onClick={e => { gameCtx.onFamilyChange(familyPrefix) }}

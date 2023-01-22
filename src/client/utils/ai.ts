@@ -5,20 +5,20 @@ import { ImMoveDown } from "react-icons/im";
 // Start ai-player
 
 const maxDepth = 1;
+const values = {
+    peon: 100,
+    alfil: 330,
+    caballo: 320,
+    torre: 500,
+    reina: 900,
+    rey: 20000
+};
 
 // Evaluate a given board status
 const evaluate = (board: BoardType, playing: 'white' | 'black') => {
     // Ideally pieces should have different values in
     // different parts of the board; for simplicity, not so.
     const boardCopy = JSON.parse(JSON.stringify(board)) as BoardType;
-    const values = {
-        peon: 10,
-        alfil: 20,
-        caballo: 30,
-        torre: 35,
-        reina: 100,
-        rey: 10000
-    };
     let score = 0;
     for (let idx in boardCopy) {
         if (boardCopy[idx].piece !== null) {
@@ -106,7 +106,7 @@ const findBestMove = (board: BoardType, playing: 'white' | 'black') => {
 
     let bestVal = Number.NEGATIVE_INFINITY;
     let moveVal: number;
-    
+
     const bestMove = {
         from: '',
         to: '',
@@ -133,10 +133,10 @@ const findBestMove = (board: BoardType, playing: 'white' | 'black') => {
                 boardCopy[idx] = { piece: pIdx, color: cIdx };
                 boardCopy[move] = { piece: pMove, color: cMove };
 
-                                // If the value of the current move
+                // If the value of the current move
                 // is more than the best value, then
                 // update best
-                // console.log(`moveVal = ${moveVal}, bestVal = ${bestVal}`)
+                console.log(`moveVal = ${moveVal}, bestVal = ${bestVal} - Moving ${idx} to ${move}`)
                 if (moveVal > bestVal) {
                     bestMove.from = idx;
                     bestMove.to = move;

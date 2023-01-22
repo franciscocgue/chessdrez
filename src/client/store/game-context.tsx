@@ -157,6 +157,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
         // check if dragged inside board
         if (dragging in boardInitial && draggingOver in boardInitial) {
             const draggingRowCol = getRowCol(dragging);
+            // current player
             if (board[getCoords(draggingRowCol.row, draggingRowCol.col)].color === playing) {
                 const moves = possibleMoves(draggingRowCol.row, draggingRowCol.col, board);
                 // check move is valid
@@ -220,9 +221,9 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
         }
     }, [board, playing])
 
-    useEffect(() => {
-        console.log(history)
-    }, [history])
+    // useEffect(() => {
+    //     console.log(history)
+    // }, [history])
 
     // king checked
     useEffect(() => {
