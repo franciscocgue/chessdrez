@@ -215,11 +215,22 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     }
 
     useEffect(() => {
-        if (playing === 'white') {
+        if (playing === 'black') {
             const boardCopy = JSON.parse(JSON.stringify(board));
-            findBestMove(boardCopy, 'white');
+            const bestMove = findBestMove(boardCopy, 'black');
+
+            onUpdateBoardHandler(bestMove.from, bestMove.to);
+
         }
     }, [board, playing])
+
+
+    // useEffect(() => {
+    //     if (playing === 'white') {
+    //         const boardCopy = JSON.parse(JSON.stringify(board));
+    //         findBestMove(boardCopy, 'white');
+    //     }
+    // }, [board, playing])
 
     // useEffect(() => {
     //     console.log(history)
