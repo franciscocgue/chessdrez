@@ -7,9 +7,28 @@
     margin: auto;
 }
 
+.aithinking {
+    position: absolute;
+    z-index: 10;
+    top: 40%;
+    left: calc(30% - 25px);
+    /* top: min(calc(60vw / 2 - 2rem  / 2), calc(100vh  / 2 - 2rem  / 2 - 8vmin / 2));
+    left: min(calc(60vw / 2 - 2rem  / 2), calc(100vh  / 2 - 2rem  / 2 - 8vmin / 2)); */
+
+    /* width: min(60vw - 2rem, 100vh - 2rem - 8vmin);
+    height: min(60vw - 2rem, 100vh - 2rem - 8vmin); */
+}
+
 @media (max-width: 1000px) {
     .board {
         width: min(100vw - 2rem, 100vh - 2rem - 8vmin);
         height: min(100vw - 2rem, 100vh - 2rem - 8vmin);       
+    }
+
+    .aithinking {
+        position: absolute;
+        z-index: 10;
+        top: 30%;
+        left: calc(50% - 25px);
     }
 }

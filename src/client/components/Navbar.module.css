@@ -4,7 +4,7 @@
     background-color: rgb(56, 56, 56);
     color: white;
     margin: 0;
-    z-index: 10;
+    z-index: 11;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;

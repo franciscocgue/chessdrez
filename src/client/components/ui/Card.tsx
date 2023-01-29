@@ -24,7 +24,7 @@ const Card = ({ title, image, disabled, note, navToPath, onClickAction }: Props)
                 if (onClickAction) {
                     onClickAction();
                 };
-                navigate('/chess/game01');
+                navigate(navToPath);
             }
         }} className={styles.container}>
             <div className={styles.title}>

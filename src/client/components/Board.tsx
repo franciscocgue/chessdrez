@@ -1,19 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Cell from './Cell';
 import GameContext from '../store/game-context';
 
-import peonwhite from '../assets/peon_blanco.png';
-import peonblack from '../assets/peon_negro.png';
-import torrewhite from '../assets/torre_blanco.png';
-import torreblack from '../assets/torre_negro.png';
-import caballowhite from '../assets/caballo_blanco.png';
-import caballoblack from '../assets/caballo_negro.png';
-import alfilwhite from '../assets/alfil_blanco.png';
-import alfilblack from '../assets/alfil_negro.png';
-import reinawhite from '../assets/reina_blanco.png';
-import reinablack from '../assets/reina_negro.png';
-import reywhite from '../assets/rey_blanco.png';
-import reyblack from '../assets/rey_negro.png';
+import ClockLoader from "react-spinners/ClockLoader";
+
+// import peonwhite from '../assets/peon_blanco.png';
+// import peonblack from '../assets/peon_negro.png';
+// import torrewhite from '../assets/torre_blanco.png';
+// import torreblack from '../assets/torre_negro.png';
+// import caballowhite from '../assets/caballo_blanco.png';
+// import caballoblack from '../assets/caballo_negro.png';
+// import alfilwhite from '../assets/alfil_blanco.png';
+// import alfilblack from '../assets/alfil_negro.png';
+// import reinawhite from '../assets/reina_blanco.png';
+// import reinablack from '../assets/reina_negro.png';
+// import reywhite from '../assets/rey_blanco.png';
+// import reyblack from '../assets/rey_negro.png';
 
 import styles from './Board.module.css';
 
@@ -52,6 +54,7 @@ const Board = () => {
                 }
             }}
         >
+            {gameCtx.aiThinking && <div className={styles.aithinking}><ClockLoader color="#dd0000"  cssOverride={{backgroundColor:'white'}} /></div>}
             {rows.map(
                 row => cols.map(
                     col => <Cell
@@ -65,7 +68,7 @@ const Board = () => {
                         row={row}
                         col={col}
                         color={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']}
-                        // color={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']}
+                    // color={gameCtx.board[row.toString() + col.toString() as keyof typeof Board]['color']}
                     />
                 )
             )}

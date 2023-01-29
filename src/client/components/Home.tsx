@@ -17,16 +17,17 @@ const Home = () => {
                     key={1}
                     image={aiGame}
                     title={'Beat the Machine'}
-                    note={'(we are working on it!)'}
-                    disabled={true}
+                    note={'New game'}
+                    navToPath={'/chess/game'}
+                    onClickAction={gameCtx.onStartAiGame}
                 ></Card>
                 <Card
                     key={2}
                     image={p2pGame}
                     title={'Device as Board'}
                     note={'New game'}
-                    navToPath={'/chess/game01'}
-                    onClickAction={gameCtx.onReset}
+                    navToPath={'/chess/game'}
+                    onClickAction={gameCtx.onStartGame}
                 ></Card>
             </div>
         </div>
