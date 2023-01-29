@@ -15,6 +15,7 @@ const boardInitial: BoardType = {
 };
 
 interface GameContextType {
+    type: 'human' | 'ai',
     board: BoardType,
     dragging: string | null, // piece dragged (its cell coordinates)
     draggingOver: string | null, // cell coordinates over which piece is dragged
@@ -36,6 +37,7 @@ interface GameContextType {
         checkedKingPos: null | string,
         checkerPos: null | string,
     },
+    aiThinking: true | false,
     onUpdateBoard: (dragging: string, draggingOver: string) => void,
     onDragStart: (row: number, col: number) => void,
     onDragEnter: (row: number, col: number) => void,
@@ -46,10 +48,12 @@ interface GameContextType {
     onToggleLastMove: () => void,
     onFamilyChange: (prefix: string) => void,
     onColorChange: (category: string, color: string) => void,
-    onReset: () => void,
+    onStartGame: () => void,
+    onStartAiGame: () => void,
 }
 
 const GameContext = React.createContext<GameContextType>({
+    type: 'human',
     board: boardInitial,
     dragging: null,
     draggingOver: null,
@@ -71,6 +75,7 @@ const GameContext = React.createContext<GameContextType>({
         checkedKingPos: null,
         checkerPos: null,
     },
+    aiThinking: false,
     onUpdateBoard: (dragging: string, draggingOver: string) => { },
     onDragStart: (row: number, col: number) => { },
     onDragEnter: (row: number, col: number) => { },
@@ -81,7 +86,8 @@ const GameContext = React.createContext<GameContextType>({
     onToggleLastMove: () => { },
     onFamilyChange: (prefix: string) => { },
     onColorChange: (category: string, color: string) => { },
-    onReset: () => {},
+    onStartGame: () => { },
+    onStartAiGame: () => { },
 });
 
 interface PropsType {
@@ -90,6 +96,7 @@ interface PropsType {
 
 export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
 
+    const [type, setType] = useState<'human' | 'ai'>('human')
     const [board, setBoard] = useState(boardInitial)
     const [playing, setPlaying] = useState<'white' | 'black'>('white')
     const [familyPrefix, setFamilyPrefix] = useState<string>('f1_')
@@ -103,7 +110,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     });
     const [history, setHistory] = useState([]);
     const [shadowEnabled, setShadowEnabled] = useState(false)
-    const [showLastMove, setShowLastMove] = useState(false)
+    const [showLastMove, setShowLastMove] = useState(true)
     const [shadows, setShadows] = useState([])
     const [eaten, setEaten] = useState([])
     const [check, setCheck] = useState({
@@ -111,8 +118,10 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
         checkedKingPos: null,
         checkerPos: null,
     })
+    const [aiThinking, setAiThinking] = useState(false)
 
-    const onResetHandle = () => {
+    const onStartGameHandle = () => {
+        setType('human');
         setBoard(boardInitial);
         setPlaying('white');
         setDragging(null);
@@ -124,6 +133,23 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
             checkedKingPos: null,
             checkerPos: null,
         });
+        setAiThinking(false);
+    }
+
+    const onStartAiGameHandle = () => {
+        setType('ai');
+        setBoard(boardInitial);
+        setPlaying('white');
+        setDragging(null);
+        setDraggingOver(null);
+        setHistory([]);
+        setEaten([]);
+        setCheck({
+            isCheck: false,
+            checkedKingPos: null,
+            checkerPos: null,
+        });
+        setAiThinking(false);
     }
 
     // useEffect(() => {
@@ -211,18 +237,29 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
             setDragging(null);
             setDraggingOver(null);
             setShadows([]);
+            setAiThinking(false);
         }
     }
 
     useEffect(() => {
-        if (playing === 'black') {
-            const boardCopy = JSON.parse(JSON.stringify(board));
-            const bestMove = findBestMove(boardCopy, 'black');
+        if (type === 'ai' && playing === 'black') {
+            // timeout to allow rendering prev move
+            setAiThinking(true);
+            setTimeout(() => {
 
-            onUpdateBoardHandler(bestMove.from, bestMove.to);
+                const boardCopy = JSON.parse(JSON.stringify(board));
+                const bestMove = findBestMove(boardCopy, 'black');
+                onUpdateBoardHandler(bestMove.from, bestMove.to);
+
+            }, 500)
 
         }
     }, [board, playing])
+
+
+    // useEffect(() => {
+    //     console.log('aiThinking: ', aiThinking)
+    // }, [aiThinking])
 
 
     // useEffect(() => {
@@ -316,6 +353,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
     return (
         <GameContext.Provider
             value={{
+                type: type,
                 board: board,
                 dragging: dragging,
                 draggingOver: draggingOver,
@@ -328,6 +366,7 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 history: history,
                 colors: colors,
                 check: check,
+                aiThinking: aiThinking,
                 onUpdateBoard: onUpdateBoardHandler,
                 onDragStart: onDragStartHandler,
                 onDragEnter: onDragEnterHandler,
@@ -338,7 +377,8 @@ export const GameContextProvider: React.FC<PropsType> = ({ children }) => {
                 onToggleLastMove: onToggleLastMoveHandler,
                 onFamilyChange: onFamilyChangeHandler,
                 onColorChange: onColorChangeHandler,
-                onReset: onResetHandle,
+                onStartGame: onStartGameHandle,
+                onStartAiGame: onStartAiGameHandle,
             }}>
             {children}
         </GameContext.Provider>
