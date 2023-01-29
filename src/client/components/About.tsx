@@ -38,10 +38,10 @@ const About = () => {
                     <p style={{ margin: '0' }}>Nope, that is the point. Instead of CRA, the project is configured with <a href='https://webpack.js.org/' target={'_blank'}>webpack</a>. Instead of using existing libraries for the Chess engine / logic, it is coded from null. Same for the Chess display.</p>
                 </div></Dialogue>
 
-                <Dialogue icon={peonIcon} iconSide='right' key={8}><p style={{ margin: '0' }}>Hmm interesting, so instead of aiming at having a great game, you are using this as a <i>playground</i> to test and learn stuff</p></Dialogue>
+                <Dialogue icon={peonIcon} iconSide='right' key={8}><p style={{ margin: '0' }}>Hmm interesting, so instead of aiming at having a great game, you are using this as a <i>playground</i> to test and learn stuff.</p></Dialogue>
 
                 <Dialogue icon={logo} iconSide='left' key={9}><div>
-                    <p style={{ margin: '0' }}>Exactly! And there are still many features planned: responsive navigation bar, AI chess so we can play with the machine, etc.</p>
+                    <p style={{ margin: '0' }}>Exactly! And new features are still being added, last one being "AI game" so we can play against the machine.</p>
                 </div></Dialogue>
 
                 <Dialogue icon={peonIcon} iconSide='right' key={10}><p style={{ margin: '0' }}>Cool! What about the hosting?</p></Dialogue>
@@ -59,7 +59,7 @@ const About = () => {
                             <span style={{color:'green'}}><FaChessBoard /></span> Mode "Device as Board" <p style={{ margin: '0 0 0 2rem' }}>➟ simply use your computer, tablet or phone as a chess board!</p>
                         </li>
                         <li style={{ marginBottom: '0.4rem' }}>
-                            <span style={{color:'green'}}><FaRobot /></span> Mode "Beat the Machine" (COMING SOON)<p style={{ margin: '0 0 0 2rem' }}>➟ play against our AI (nothing fancy, just derived from game theory for zero-sum games)</p>
+                            <span style={{color:'green'}}><FaRobot /></span> Mode "Beat the Machine"<p style={{ margin: '0 0 0 2rem' }}>➟ play against our AI (nothing fancy, just derived from game theory for zero-sum games)</p>
                         </li>
                         <li style={{ marginBottom: '0.4rem' }}>
                             <span style={{color:'green'}}><MdMobileFriendly /></span> Responsive design<p style={{ margin: '0 0 0 2rem' }}>➟ the <i>intention</i> is that the application shows smoothly on any device</p>
