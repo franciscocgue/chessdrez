@@ -236,7 +236,7 @@ const findBestMove = (board: BoardType, playing: 'white' | 'black') => {
                 // If the value of the current move
                 // is more than the best value, then
                 // update best
-                console.log(`moveVal = ${moveVal}, bestVal = ${bestVal} - Moving ${idx} to ${move}`)
+                // console.log(`moveVal = ${moveVal}, bestVal = ${bestVal} - Moving ${idx} to ${move}`)
                 if (moveVal > bestVal) {
                     bestMove.from = idx;
                     bestMove.to = move;
@@ -246,7 +246,7 @@ const findBestMove = (board: BoardType, playing: 'white' | 'black') => {
         }
     }
 
-    console.log(`Best move from ${bestMove.from} to ${bestMove.to}`)
+    // console.log(`Best move from ${bestMove.from} to ${bestMove.to}`)
 
     return bestMove;
 

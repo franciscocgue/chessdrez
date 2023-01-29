@@ -147,7 +147,7 @@ const findBestMove = (board: BoardType) => {
             const { row, col } = { ...getRowCol(idx) }
             const moves = possibleMoves(row, col, boardCopy)
             moves.forEach(move => {
-                console.log(`Moving ${idx} to ${move}`)
+                // console.log(`Moving ${idx} to ${move}`)
                 // Store old value
                 const { piece, color } = { ...boardCopy[move] }
                 // Make move
@@ -164,7 +164,7 @@ const findBestMove = (board: BoardType) => {
                 // If the value of the current move
                 // is more than the best value, then
                 // update best
-                console.log(`moveVal = ${moveVal}, bestVal = ${bestVal}`)
+                // console.log(`moveVal = ${moveVal}, bestVal = ${bestVal}`)
                 if (moveVal > bestVal) {
                     bestMove.from = idx;
                     bestMove.to = move;
@@ -174,7 +174,7 @@ const findBestMove = (board: BoardType) => {
         }
     }
 
-    console.log(`Best move from ${bestMove.from} to ${bestMove.to}`)
+    // console.log(`Best move from ${bestMove.from} to ${bestMove.to}`)
 
 }
 

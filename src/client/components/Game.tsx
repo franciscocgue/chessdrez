@@ -91,7 +91,7 @@ const Game = () => {
             onDragOver={e => e.preventDefault()}
             onDrop={e => {
                 // dropped out of board
-                console.log("dropped out of board")
+                // console.log("dropped out of board")
                 e.preventDefault()
                 gameCtx.onDropOutsideBoard();
             }}
