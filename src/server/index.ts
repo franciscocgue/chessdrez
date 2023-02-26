@@ -4,32 +4,32 @@ const express = require('express');
 const path = require('path');
 const routes = require('./routes');
 const cors = require('cors');
-const { Server } = require('socket.io');
+// const { Server } = require('socket.io');
 
 import { MongoClient } from 'mongodb';
 
 // Connection URI
-const uri = 'mongodb+srv://admin:TNzmUyeQzqOm6RoG@cluster0.pf7w6n9.mongodb.net/?retryWrites=true&w=majority';
+// const uri = 'mongodb+srv://admin:TNzmUyeQzqOm6RoG@cluster0.pf7w6n9.mongodb.net/?retryWrites=true&w=majority';
 
 // Create a new MongoClient
-const client = new MongoClient(uri);
+// const client = new MongoClient(uri);
 
-async function run() {
-    console.log('start')
-    try {
-        // Connect the client to the server (optional starting in v4.7)
-        await client.connect();
-        // Establish and verify connection
-        await client.db("chessdrez").command({ ping: 1 });
-        console.log("Connected successfully to server");
-    } finally {
-        // Ensures that the client will close when you finish/error
-        await client.close();
-    }
-    console.log('end')
-}
+// async function run() {
+//     console.log('start')
+//     try {
+//         // Connect the client to the server (optional starting in v4.7)
+//         await client.connect();
+//         // Establish and verify connection
+//         await client.db("chessdrez").command({ ping: 1 });
+//         console.log("Connected successfully to server");
+//     } finally {
+//         // Ensures that the client will close when you finish/error
+//         await client.close();
+//     }
+//     console.log('end')
+// }
 
-run().catch(console.dir);
+// run().catch(console.dir);
 
 const app = express() as Application;
 const port = process.env.PORT || 8080;
@@ -66,16 +66,16 @@ const server = app.listen(port, () => {
     console.log('#####\nServer started on port ' + port.toString() + '\n#####');
 });
 
-const io = new Server(server)
+// const io = new Server(server)
 
-io.on('connection', (socket: any) => {
-    console.log('a user connected');
+// io.on('connection', (socket: any) => {
+//     console.log('a user connected');
 
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
-    });
+//     socket.on('disconnect', () => {
+//         console.log('user disconnected');
+//     });
 
-    socket.on('move', (payload: string) => {
-        console.log('move: ' + payload);
-    })
-});
+//     socket.on('move', (payload: string) => {
+//         console.log('move: ' + payload);
+//     })
+// });
