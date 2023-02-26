@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 import Board from '../components/Board';
 import EatenOnes from '../components/EatenOnes';
 import GameContext from '../store/game-context';
@@ -50,7 +50,7 @@ const Game = () => {
     const [lastNRows, setLastNRows] = useState('3');
     const gameCtx = useContext(GameContext);
 
-    const { gameid } = useParams();
+    // const { gameid } = useParams();
 
     // console.log('gameid', gameid)
 

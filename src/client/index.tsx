@@ -7,9 +7,10 @@ import {
     Route
 } from 'react-router-dom';
 
-import App from './App';
+// import App from './App';
 
 import './styles.css';
+import styles from './App.module.css';
 import Root from './pages/Root';
 import Home from './components/Home';
 import Game from './components/Game';
@@ -20,7 +21,10 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Root />,
-        errorElement: <div>Opps error</div>,
+        errorElement: <div className={styles.error}>
+            <p>Oops! An error just occurred 😅</p>
+            <p><a href='/'>Back to Chessdrez</a></p>
+        </div>,
         children: [
             {
                 path: '/',
@@ -34,8 +38,13 @@ const router = createBrowserRouter([
                 path: '/config',
                 element: <Settings />,
             },
+            // {
+            //     path: '/chess/:gameid',
+            //     // path: '/chess/:cheddid',
+            //     element: <Game />,
+            // },
             {
-                path: '/chess/:gameid',
+                path: '/chess',
                 // path: '/chess/:cheddid',
                 element: <Game />,
             },

@@ -3,3 +3,13 @@
     background-color: rgb(43, 43, 43);
     min-height: 100vh;
 }
+
+.error {
+    width: 50%;
+    padding: 1rem;
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    text-align: center;
+}
+

@@ -18,7 +18,7 @@ const Home = () => {
                     image={aiGame}
                     title={'Beat the Machine'}
                     note={'New game'}
-                    navToPath={'/chess/game'}
+                    navToPath={'/chess'}
                     onClickAction={gameCtx.onStartAiGame}
                 ></Card>
                 <Card
@@ -26,7 +26,7 @@ const Home = () => {
                     image={p2pGame}
                     title={'Device as Board'}
                     note={'New game'}
-                    navToPath={'/chess/game'}
+                    navToPath={'/chess'}
                     onClickAction={gameCtx.onStartGame}
                 ></Card>
             </div>
