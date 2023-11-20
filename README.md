@@ -55,4 +55,4 @@ Some of this bugs or needed features, I am aware of. Others, I would appreciate 
 
 <hr>
 
-##### Author: Francisco Carmona Guerrero
+##### Author: Francisco C.
